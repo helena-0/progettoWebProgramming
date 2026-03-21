@@ -1,0 +1,436 @@
+body{
+    margin: 0;
+    font-family: 'Montserrat';
+}
+
+
+a{
+ cursor: pointer;
+}
+
+/*header*/
+#bordo{
+    background-color: #e30613;
+    width: 100%;
+}
+
+/*navservizi è la flexbox che contiene la flexbox navserviziinterno che a sua volta contiene le scritte per i servizi*/
+#navservizi{
+    max-width: 1150px;
+    margin: 0 auto;
+    display: flex;
+    color: white;
+    font-weight: 500;
+    font-size: .75em;
+    height: 5.5vh;
+
+    justify-content: flex-end;
+}
+
+#navserviziinterno{   
+    display: flex;
+    width: 54%;
+    justify-content:space-between;
+    align-items: center;
+}
+
+#separatore{
+    border-left: 1px solid white;
+    padding-left: 4%;
+}
+
+/*barra-superiore è la flexbox che contiene il logo, la barra di ricerca, la scritta ricerca avanzata, e le tre icone*/
+.barra-superiore{
+    display: flex;
+    height: 95px;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    height: 10vh;
+    cursor: pointer;
+}
+
+/*ricerca è la flexbox che contiene la barra di ricerca e la scritta ricerca avanzata*/
+#ricerca{
+    display: flex;
+    align-items: center;
+
+    width: 55%;
+}
+
+.barra-ricerca{
+    display: flex;
+    padding-left: 4%;
+    background-color: #f5f5f5;
+    height: 45px;
+    width: 75%;
+    border: 1px solid #9a9a9a;
+    color: #626a6f;
+    font-weight: 400;
+    font-size: .90em;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*lo uso per tutte le icone: lente, preferiti, carrello, profilo*/
+.immaginericerca{
+    height: 4vh;
+    cursor: pointer;
+}
+
+#ricerca-avanzata{
+    width: 10%;
+    font-weight: 550;
+    font-size: .75em;
+    padding-left: 2%;
+    text-decoration: underline;
+}
+
+/*icone è la flexbox che contiene le tre icone a destra*/
+.icone{
+    display: flex;
+    width: 15%;
+
+    justify-content: space-around;
+}
+
+.consegne{
+    display: flex;
+    color: #03821f;
+    max-width: 1150px;
+    margin: 0 auto;
+    margin-top: -12px;
+    font-size: .75em;
+    font-weight: 500;
+
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#camion{
+    height: 4vh;
+}
+
+/*barra-menu è la flexbox che contiene tutti i menu in basso al centro*/
+#barra-menu{
+    display: flex;
+    max-width: 1150px;
+    margin: 0 auto;
+    margin-top: 10px;
+    font-size: .90em;
+    font-weight: 550;
+
+    justify-content: space-around;
+}
+
+#barra-menu a{
+    padding-bottom: 7px;
+    border-bottom: 2px solid transparent;
+}
+
+#barra-menu a:hover{
+    border-bottom: 2px solid #e30613;
+}
+
+
+/*barra superiore a 1024px*/
+
+#barra-superiore1024{
+    display: none;
+    height: 30px;
+    max-width: 1024px;
+    margin: 0 auto;
+    width: 96%;
+    margin-top: 20px;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo1024{
+    display: none;
+    height: 6vh;
+    cursor: pointer;
+}
+
+.barra-ricerca1024{
+    display: none;
+    width: 96%;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+.consegne1024{
+    display: none;
+    margin-top: 10px;
+
+    justify-content: center;
+}
+
+
+@media (max-width: 1024px){
+    #bordo{display: none;}
+    #navservizi{display: none;}
+    .barra-superiore{display: none;}
+    #barra-menu{display: none;}
+    .consegne{display: none;}
+
+
+    #barra-superiore1024{display: flex;}
+    #logo1024{display: inline;}
+
+    .icone{
+        width: 10%;
+    }
+
+    .barra-ricerca1024{
+        display: flex;
+    }
+
+    .consegne1024{
+    display: flex;
+    }    
+}
+
+/*footer*/
+/*la parte del footer grigio*/
+#footer-grigio{
+    display: flex;
+    flex-direction: column;
+
+    background-color: #263238;
+    color: #f0f1f1;
+    font-size: .75em;
+    font-weight: 500;
+
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.footer-informazioni{
+    display: flex;
+    max-width: 1150px;
+    margin: 0 auto;
+    width: 96%;
+    padding: 26px;
+
+    justify-content: space-around;
+}
+
+.footer-informazioni2{
+    display: flex;
+    max-width: 1150px;
+    margin: 0 auto;
+    width: 96%;
+    padding: 26px;
+
+    justify-content: space-around;
+}
+
+.footer-informazioni div{
+    cursor: pointer;
+    margin-bottom: 12px;
+}
+
+.footer-informazioni div div :hover{
+    text-decoration: underline;
+}
+
+.footer-informazioni .titoli-paragrafi{
+    margin-bottom: 17px;
+    font-size: 1.1em;
+    font-weight: 580;
+}
+
+.footer-informazioni2 div{
+    cursor: pointer;
+    margin-bottom: 12px;
+}
+
+.footer-informazioni2 div div :hover{
+    text-decoration: underline;
+}
+
+.footer-informazioni2 .titoli-paragrafi{
+    margin-bottom: 17px;
+    font-size: 1.1em;
+    font-weight: 580;
+}
+
+.footer-grigio-icone{
+    display: flex;
+
+    align-items: center;
+}
+
+.footer-grigio-icone img{
+    height: 5vh;
+}
+
+#footer-linea-icone{
+    border-top: 1px solid #3c484d;
+    border-bottom: 1px solid #3c484d;
+}
+
+#icone-social{
+    display: flex;
+    justify-content: space-between;
+
+    height: 45px;
+}
+
+#icone-social img{
+    padding-right: 15px;
+}
+/****************************************/
+
+/*la parte del footer bianco*/
+#footer-bianco{
+    display: flex;
+    flex-direction: column;
+    max-width: 1150px;
+    margin: 0 auto;
+    width: 96%;
+    margin-top: 25px;
+    margin-bottom: 60px;
+
+    font-size: .60em;
+    font-weight: 500;
+}
+
+/*primo rigo del footer (un flex) bianco che contiene due flexbox*/
+.footer-bianco1{
+    display: flex;
+    margin-bottom: 20px;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*primo flexbox del primo rigo che contiene la parte con le carte e la garanzia e questi due a loro volta sono due flexbox*/
+#footer-bianco1-sinistra{
+    display: flex;
+
+    align-items: center;
+}
+
+#footer-bianco1-sinistra div{
+    display: flex;
+    padding-right: 10px;
+
+    align-items: center;
+}
+
+#footer-bianco1-sinistra div span{
+    padding-right: 12px;
+}
+
+/*le icone sono a loro volta raggruppate in un flexbox*/
+.footer-bianco1-icone{
+    display: flex;
+
+    align-items: center;
+}
+
+.footer-bianco1-icone img{
+    height: 4vh;
+    padding-right: 12px;
+}
+
+/*secondo flexbox della prima riga*/
+#footer-bianco1-destra{
+    display: flex;
+
+    align-items: center;
+}
+
+#footer-bianco1-destra span{
+    padding-right: 12px;
+}
+
+#footer-bianco1-destra img{
+     height: 6vh;
+}
+
+#footer-bianco2{
+    width: 100%;
+    margin-bottom: 15px;
+    line-height: 17px;
+}
+
+#footer-bianco2 a{
+    text-decoration: underline;
+    border-right: 1px solid black;
+    padding-right:4px ;
+}
+
+#footer-bianco3{
+    line-height: 15px;
+}
+
+/*****************************************/
+
+.footer-tendina768{
+    display: none;
+    width: 93%;
+    margin: 0 auto;
+    padding: 18px;
+    border-bottom: 1px solid #3c484d;
+    font-size: 1.1em;
+    font-weight: 580;
+
+    justify-content: space-between;
+}
+
+.footer-tendina768 img{
+    height: 3vh;
+}
+
+.footer-grigio-icone1-768{
+    display: none;
+    margin-top: 25px;
+
+    justify-content: space-around;
+}
+
+#logo-bianco768{
+    height: 12vh;
+    margin-top: -15px;
+    margin-left: -15px;
+    margin-bottom: 20px;
+}
+
+@media(max-width: 768px){
+    .footer-informazioni{display: none;}
+    #footer-grigio{
+        align-items: normal;
+    }
+    .footer-grigio-icone{
+        flex-direction: column;
+    }
+
+    .footer-informazioni2{
+        flex-direction: column;
+
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+    
+    .footer-tendina768{
+        display: flex;
+    }
+
+    .footer-grigio-icone1-768{
+        display: flex;
+    }
+
+    .footer-bianco1{
+        flex-direction: column;
+    }
+}
