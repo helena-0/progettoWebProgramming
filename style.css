@@ -11,7 +11,7 @@ a{
 /*header*/
 #bordo{
     background-color: #e30613;
-    width: 100%;
+    /*width: 100%;*/
 }
 
 /*navservizi è la flexbox che contiene la flexbox navserviziinterno che a sua volta contiene le scritte per i servizi*/
@@ -85,7 +85,7 @@ a{
 }
 
 #ricerca-avanzata{
-    width: 10%;
+    width: 10%; /*grandezza della casella che contiene ricerca avanzata per fare andare a capo*/
     font-weight: 550;
     font-size: .75em;
     padding-left: 2%;
@@ -161,7 +161,7 @@ a{
 
 .barra-ricerca1024{
     display: none;
-    width: 96%;
+    width: 90%;
     margin: 0 auto;
     margin-top: 15px;
 }
@@ -217,7 +217,7 @@ a{
     display: flex;
     max-width: 1150px;
     margin: 0 auto;
-    width: 96%;
+    width: 93%;
     padding: 26px;
 
     justify-content: space-around;
@@ -227,7 +227,7 @@ a{
     display: flex;
     max-width: 1150px;
     margin: 0 auto;
-    width: 96%;
+    width: 93%;
     padding: 26px;
 
     justify-content: space-around;
@@ -281,12 +281,12 @@ a{
 #icone-social{
     display: flex;
     justify-content: space-between;
-
-    height: 45px;
+    flex-wrap: wrap;
 }
 
 #icone-social img{
     padding-right: 15px;
+    height: 45px;
 }
 /****************************************/
 
@@ -309,13 +309,13 @@ a{
     display: flex;
     margin-bottom: 20px;
 
-    justify-content: space-between;
     align-items: center;
 }
 
-/*primo flexbox del primo rigo che contiene la parte con le carte e la garanzia e questi due a loro volta sono due flexbox*/
+/*primo flexbox del primo rigo che contiene la parte con le carte*/
 #footer-bianco1-sinistra{
     display: flex;
+    width: 50%;
 
     align-items: center;
 }
@@ -334,7 +334,7 @@ a{
 /*le icone sono a loro volta raggruppate in un flexbox*/
 .footer-bianco1-icone{
     display: flex;
-
+    flex-wrap: wrap;
     align-items: center;
 }
 
@@ -346,6 +346,15 @@ a{
 /*secondo flexbox della prima riga*/
 #footer-bianco1-destra{
     display: flex;
+    width: 50%;
+    padding-left: 35px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#footer-bianco1-destra div{
+    display: flex;
+    padding-right: 10px;
 
     align-items: center;
 }
@@ -359,7 +368,7 @@ a{
 }
 
 #footer-bianco2{
-    width: 100%;
+    /*width: 100%;*/
     margin-bottom: 15px;
     line-height: 17px;
 }
@@ -378,8 +387,7 @@ a{
 
 .footer-tendina768{
     display: none;
-    width: 93%;
-    margin: 0 auto;
+    
     padding: 18px;
     border-bottom: 1px solid #3c484d;
     font-size: 1.1em;
@@ -432,5 +440,42 @@ a{
 
     .footer-bianco1{
         flex-direction: column;
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    #footer-bianco1-sinistra{
+        width: 100%;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #d2d2d2;
+    }
+
+    #footer-bianco1-sinistra div{
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    #footer-bianco1-sinistra div span{
+        margin-bottom: 10px;
+    }
+
+    #footer-bianco1-destra{
+        width: 98%;
+        padding-top: 20px;
+
+
+        justify-content: space-between;
+   
+    }
+
+    #footer-bianco1-destra div{
+        margin-right: 0;
+
+        align-items: center;
+    }
+
+    #footer-bianco1-destra div span{
+        margin-bottom: 10px;
     }
 }
