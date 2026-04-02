@@ -198,6 +198,46 @@ a{
     }    
 }
 
+/*banner*/
+#contenitore-banner{
+    position: relative;
+}
+
+#banner{
+    width: 100%;
+    margin-top: 1px;
+
+    cursor: pointer;
+}
+
+.pulsante-freccia{
+    display: flex;
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+
+    background-color: white;
+    border: 1px solid black;
+    font-weight: 500;
+
+    width: 10px;
+    height: 10px;
+    padding: 15px;
+    border-radius: 80px;
+
+    align-items: center;
+}
+
+#sinistra{
+    left: 70px;
+}
+
+#destra{
+    right: 70px;
+}
+
+
+
 /*footer*/
 /*la parte del footer grigio*/
 #footer-grigio{
@@ -228,7 +268,6 @@ a{
     max-width: 1150px;
     margin: 0 auto;
     width: 93%;
-    padding: 26px;
 
     justify-content: space-around;
 }
@@ -315,7 +354,7 @@ a{
 /*primo flexbox del primo rigo che contiene la parte con le carte*/
 #footer-bianco1-sinistra{
     display: flex;
-    width: 50%;
+    width: 60%;
 
     align-items: center;
 }
@@ -346,8 +385,7 @@ a{
 /*secondo flexbox della prima riga*/
 #footer-bianco1-destra{
     display: flex;
-    width: 50%;
-    padding-left: 35px;
+    width: 40%;
     justify-content: space-between;
     align-items: center;
 }
@@ -441,7 +479,7 @@ a{
     .footer-bianco1{
         flex-direction: column;
         width: 100%;
-        align-items: flex-start;
+        align-items: center;
     }
 
     #footer-bianco1-sinistra{
