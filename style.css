@@ -236,6 +236,43 @@ a{
     right: 70px;
 }
 
+/*classifica*/
+
+#blocco-classifica{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#classifica-categorie{
+    display: flex;
+}
+
+#classifica-categorie div{
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    font-size: 80%;
+    font-weight: 700;
+}
+
+.bordo{
+    border-left: 1px solid black;
+}
+
+#classifica{
+    margin-top: 20px;
+}
+
+#primo-posto{
+    background-color: #e1e1e1;
+    width: 580px;
+    height: 600px;
+}
 
 
 /*footer*/
