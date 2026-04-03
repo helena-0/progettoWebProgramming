@@ -330,6 +330,7 @@ a{
 
 #titolo-primo{
     color: #b30600;
+    border-bottom: 2px solid transparent;
 }
 
 .stelle2{
@@ -343,15 +344,6 @@ a{
     width: 580px;
 }
 
-.libro-classifica:hover{
-    cursor: pointer;
-
-}
-
-
-.libro-classifica img{
-    width: 90px;
-}
 
 .numero-classifica{
     color: #b30600;
@@ -374,6 +366,7 @@ a{
 .titolo{
     font-size: 16px;
     font-weight: 630;
+    border-bottom: 2px solid transparent;
 }
 
 .sottotitolo{
@@ -386,14 +379,84 @@ a{
 }
 
 .stelle{
-    display: flex;
+    display: flex;  
 
     align-items: center;
+}
+
+.stelle img{
+    width: 70px;
 }
 
 .stelle span{
     font-size: 13px;
 }
+
+.contenitore-immagine{
+    position: relative;
+    width: 90px;
+}
+
+.contenitore-immagine img {
+    width: 100%;
+    display: block;
+}
+
+#contenitore-immagine-primo{
+    position: relative;
+    width: 200px;
+}
+
+#contenitore-immagine-primo img {
+    width: 100%;
+    display: block;
+}
+
+
+.overlay{
+    position:absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.libro-classifica:hover .overlay{
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.libro-classifica:hover .titolo{
+    border-bottom: 2px solid black;
+}
+
+#primo-posto:hover .overlay{
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#primo-posto:hover .titolo{
+    border-bottom: 2px solid #b30600;
+}
+
+#categorie-preferite{
+display: flex;
+}
+
+#categorie-preferite div{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    font-size: 100%;
+    font-weight: 700;
+    
+}
+
 
 /*footer*/
 /*la parte del footer grigio*/
