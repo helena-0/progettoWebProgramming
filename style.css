@@ -26,7 +26,7 @@ a{
     justify-content: flex-end;
 }
 
-#navserviziinterno{   
+#navservizi div{   
     display: flex;
     width: 54%;
     justify-content:space-between;
@@ -86,7 +86,7 @@ a{
     height: 4vh;
 }
 
-#ricerca-avanzata{
+#ricerca a{
     width: 10%; /*grandezza della casella che contiene ricerca avanzata per fare andare a capo*/
     font-weight: 550;
     font-size: .75em;
@@ -156,7 +156,7 @@ a{
     align-items: center;
 }
 
-#logo1024{
+#barra-superiore1024 .logo{
     display: none;
     height: 6vh;
     cursor: pointer;
@@ -186,7 +186,7 @@ a{
 
 
     #barra-superiore1024{display: flex;}
-    #logo1024{display: inline;}
+    #barra-superiore1024 .logo{display: inline;}
 
     .icone{
         width: 10%;
@@ -202,11 +202,11 @@ a{
 }
 
 /*banner*/
-#contenitore-banner{
+#banner{
     position: relative;
 }
 
-#banner{
+#banner img{
     width: 100%;
     margin-top: 1px;
 
