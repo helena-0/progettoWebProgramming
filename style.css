@@ -78,10 +78,13 @@ a{
     align-items: center;
 }
 
-/*lo uso per tutte le icone: lente, preferiti, carrello, profilo*/
-.immaginericerca{
+.barra-ricerca .logo{
     height: 4vh;
-    cursor: pointer;
+}
+
+/*lo uso per tutte le icone: lente, preferiti, carrello, profilo*/
+.icone .logo{
+    height: 4vh;
 }
 
 #ricerca-avanzata{
@@ -113,8 +116,9 @@ a{
     align-items: center;
 }
 
-#camion{
+.consegne .logo{
     height: 4vh;
+    cursor: default;
 }
 
 /*barra-menu è la flexbox che contiene tutti i menu in basso al centro*/
@@ -237,7 +241,6 @@ a{
 }
 
 /*classifica*/
-
 #blocco-classifica{
     display: flex;
     flex-direction: column;
@@ -248,6 +251,7 @@ a{
     align-items: center;
 }
 
+/*sezione superiore con LIBRI, FILM, MUSICA, GIOCHI*/
 #classifica-categorie{
     display: flex;
 }
@@ -271,11 +275,12 @@ a{
     border-left: 1px solid black;
 }
 
-#classifica{
+.sezione{
     display: flex;
     margin-top: 20px;
 }
 
+/*specifiche per il libro in prima posizione*/
 #primo-posto{
     display: flex;
     position: relative;
@@ -306,7 +311,7 @@ a{
     align-items: center;
 }
 
-#libro-primo-posto{
+#primo-posto .libro-descrizione{
     display: flex;
     flex-direction: column;
     height: 90px;
@@ -315,6 +320,7 @@ a{
 
     justify-content: space-between;
     align-items: center;
+    text-align: center;
 }
 
 #primo-posto-sfondo{
@@ -328,7 +334,9 @@ a{
     width: 200px;
 }
 
-#titolo-primo{
+#primo-posto .titolo{
+    font-size: 16px;
+    font-weight: 630;
     color: #b30600;
     border-bottom: 2px solid transparent;
 }
@@ -337,13 +345,13 @@ a{
     width: 80px;
 }
 
-.libro-classifica{
+/*specifiche per i libri a destra*/
+.libro{
     display: flex;
     padding: 5px;
     margin-left: 30px;
     width: 580px;
 }
-
 
 .numero-classifica{
     color: #b30600;
@@ -353,7 +361,7 @@ a{
     padding: 10px;
 }
 
-.libro-classifica-sinistra{
+.libro-descrizione{
     display: flex;
     flex-direction: column;
     height: 95px;
@@ -392,6 +400,7 @@ a{
     font-size: 13px;
 }
 
+/*specifiche per fare l'overlay*/
 .contenitore-immagine{
     position: relative;
     width: 90px;
@@ -402,16 +411,15 @@ a{
     display: block;
 }
 
-#contenitore-immagine-primo{
+#primo-posto .contenitore-immagine{
     position: relative;
     width: 200px;
 }
 
-#contenitore-immagine-primo img {
+#primo-posto .contenitore-immagine img {
     width: 100%;
     display: block;
 }
-
 
 .overlay{
     position:absolute;
@@ -422,12 +430,12 @@ a{
     background-color: rgba(255, 255, 255, 0);
 }
 
-.libro-classifica:hover .overlay{
+.libro:hover .overlay{
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.libro-classifica:hover .titolo{
+.libro:hover .titolo{
     border-bottom: 2px solid black;
 }
 
@@ -440,11 +448,12 @@ a{
     border-bottom: 2px solid #b30600;
 }
 
-#categorie-preferite{
-display: flex;
+.categorie{
+    display: flex;
+    margin-top: 10px;
 }
 
-#categorie-preferite div{
+.categorie div{
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 4px;
@@ -457,6 +466,107 @@ display: flex;
     
 }
 
+.categorie div:hover{
+    cursor: pointer;
+}
+
+.categorie div span{
+    border-bottom: 2px solid black;
+}
+
+/*novità da non perdere*/
+
+#blocco-novita{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    background-color: #f5f5f5;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#blocco-novita .sezione{
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+#blocco-novita .libro{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin-left: 30px;
+    width: 250px;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#blocco-novita .libro-descrizione{   
+    display: flex;
+    flex-direction: column; 
+    height: 95px;
+    margin-top: 10px;
+    padding: 5px;
+
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+#blocco-novita .contenitore-immagine{
+    position: relative;
+    width: 150px;
+}
+
+.contenitore-immagine img {
+    width: 100%;
+    display: block;
+}
+
+#blocco-novita .titolo{
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+}
+
+#blocco-novita .titolo span:hover{
+    border-bottom: 2px solid black;
+}
+
+.sottotitolo{
+    font-size: 12px;
+    margin-top: 3px;
+    margin-bottom: 5px;
+}
+
+.sottotitolo span{
+    font-weight: 600;
+}
+
+#blocco-novita .stelle img{
+    width: 90px;
+}
+
+.prezzo{
+    display: flex;
+    width: 100px;
+    margin-top: 5px;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sconto{
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.prezzo-pieno{
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: line-through;
+}
 
 /*footer*/
 /*la parte del footer grigio*/
@@ -520,6 +630,13 @@ display: flex;
     margin-bottom: 17px;
     font-size: 1.1em;
     font-weight: 580;
+}
+
+.icone{
+    display: flex;
+    width: 15%;
+
+    justify-content: space-around;
 }
 
 .footer-grigio-icone{
