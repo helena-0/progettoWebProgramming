@@ -11,7 +11,6 @@ a{
 /*header*/
 #bordo{
     background-color: #e30613;
-    /*width: 100%;*/
 }
 
 /*navservizi è la flexbox che contiene la flexbox navserviziinterno che a sua volta contiene le scritte per i servizi*/
@@ -632,21 +631,21 @@ a{
     font-weight: 580;
 }
 
-.icone{
+/*.icone{
     display: flex;
     width: 15%;
 
     justify-content: space-around;
-}
+}*/
 
-.footer-grigio-icone{
-    display: flex;
-
+#footer-grigio .icone{
+    justify-content: flex-start;
     align-items: center;
 }
 
-.footer-grigio-icone img{
-    height: 5vh;
+#footer-grigio .icone img{
+    height: 40px;
+    padding: 5px;
 }
 
 #footer-linea-icone{
@@ -654,13 +653,13 @@ a{
     border-bottom: 1px solid #3c484d;
 }
 
-#icone-social{
-    display: flex;
+.footer-informazioni2 .icone{
+    width: 100%;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-#icone-social img{
+.footer-informazioni2 .icone img{
     padding-right: 15px;
     height: 45px;
 }
@@ -708,13 +707,13 @@ a{
 }
 
 /*le icone sono a loro volta raggruppate in un flexbox*/
-.footer-bianco1-icone{
-    display: flex;
+#footer-bianco .icone{
+    width: 100%;
     flex-wrap: wrap;
     align-items: center;
 }
 
-.footer-bianco1-icone img{
+#footer-bianco .icone img{
     height: 4vh;
     padding-right: 12px;
 }
@@ -794,7 +793,7 @@ a{
     #footer-grigio{
         align-items: normal;
     }
-    .footer-grigio-icone{
+    .footer-grigio-icone1-768 .icone{
         flex-direction: column;
     }
 
