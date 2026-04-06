@@ -162,6 +162,12 @@ a{
     cursor: pointer;
 }
 
+#barra-superiore1024 .icone .logo{
+    display: none;
+    height: 4vh;
+    cursor: pointer;
+}
+
 .barra-ricerca1024{
     display: none;
     width: 90%;
@@ -184,9 +190,9 @@ a{
     #barra-menu{display: none;}
     .consegne{display: none;}
 
-
     #barra-superiore1024{display: flex;}
     #barra-superiore1024 .logo{display: inline;}
+    #barra-superiore1024 .icone .logo{display: inline;}
 
     .icone{
         width: 10%;
@@ -282,6 +288,7 @@ a{
 /*specifiche per il libro in prima posizione*/
 #primo-posto{
     display: flex;
+    flex-direction: column;
     position: relative;
     background-color: #e1e1e1;
     padding-top: 15px;
@@ -329,9 +336,6 @@ a{
     padding-right: 90px;
 }
 
-#primo-posto-libro{
-    width: 200px;
-}
 
 #primo-posto .titolo{
     font-size: 16px;
@@ -340,15 +344,20 @@ a{
     border-bottom: 2px solid transparent;
 }
 
+#primo-posto .numero-classifica{
+    display: none;
+}
+
 .stelle2{
     width: 80px;
 }
+
 
 /*specifiche per i libri a destra*/
 .libro{
     display: flex;
     padding: 5px;
-    margin-left: 30px;
+    margin-left: 35px;
     width: 580px;
 }
 
@@ -473,6 +482,9 @@ a{
     border-bottom: 2px solid black;
 }
 
+
+
+
 /*novità da non perdere*/
 
 #blocco-novita{
@@ -565,6 +577,122 @@ a{
     font-size: 13px;
     font-weight: 500;
     text-decoration: line-through;
+}
+
+@media(max-width: 768px){
+
+    #numero-uno{display: none;}
+
+    #primo-posto .numero-classifica{
+    display: inline;
+}
+
+    #primo-posto{
+        padding: 17px;
+        margin-left: 30px;
+        align-items: normal;
+    }
+
+    #primo-posto-sfondo{
+        display: flex;
+        padding: 0;
+        background-color: transparent;
+    }
+
+    #primo-posto .libro-descrizione{
+        height: 95px;
+        margin-top: 10px;
+        padding: 5px;
+
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    #primo-posto .contenitore-immagine{
+        max-width: 110px;
+        flex-shrink: 0;
+    }
+
+    .libro .contenitore-immagine{
+        padding-left: 20px;
+    }
+
+    #blocco-classifica .sezione{
+        flex-direction: column;
+    }
+
+    .categorie div{
+        font-size: 90%;
+    }
+
+    .categorie div span{
+        border-bottom: 1px solid black;
+    }
+
+
+    .footer-informazioni{display: none;}
+    #footer-grigio{
+        align-items: normal;
+    }
+    .footer-grigio-icone1-768 .icone{
+        flex-direction: column;
+    }
+
+    .footer-informazioni2{
+        flex-direction: column;
+
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+    
+    .footer-tendina768{
+        display: flex;
+    }
+
+    .footer-grigio-icone1-768{
+        display: flex;
+    }
+
+    .footer-bianco1{
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    #footer-bianco1-sinistra{
+        width: 100%;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #d2d2d2;
+    }
+
+    #footer-bianco1-sinistra div{
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    #footer-bianco1-sinistra div span{
+        margin-bottom: 10px;
+    }
+
+    #footer-bianco1-destra{
+        width: 98%;
+        padding-top: 20px;
+
+
+        justify-content: space-between;
+   
+    }
+
+    #footer-bianco1-destra div{
+        margin-right: 0;
+
+        align-items: center;
+    }
+
+    #footer-bianco1-destra div span{
+        margin-bottom: 10px;
+    }
 }
 
 /*footer*/
@@ -788,68 +916,3 @@ a{
     margin-bottom: 20px;
 }
 
-@media(max-width: 768px){
-    .footer-informazioni{display: none;}
-    #footer-grigio{
-        align-items: normal;
-    }
-    .footer-grigio-icone1-768 .icone{
-        flex-direction: column;
-    }
-
-    .footer-informazioni2{
-        flex-direction: column;
-
-        justify-content: space-around;
-        align-items: flex-start;
-    }
-    
-    .footer-tendina768{
-        display: flex;
-    }
-
-    .footer-grigio-icone1-768{
-        display: flex;
-    }
-
-    .footer-bianco1{
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
-    }
-
-    #footer-bianco1-sinistra{
-        width: 100%;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #d2d2d2;
-    }
-
-    #footer-bianco1-sinistra div{
-        flex-direction: column;
-
-        align-items: flex-start;
-    }
-
-    #footer-bianco1-sinistra div span{
-        margin-bottom: 10px;
-    }
-
-    #footer-bianco1-destra{
-        width: 98%;
-        padding-top: 20px;
-
-
-        justify-content: space-between;
-   
-    }
-
-    #footer-bianco1-destra div{
-        margin-right: 0;
-
-        align-items: center;
-    }
-
-    #footer-bianco1-destra div span{
-        margin-bottom: 10px;
-    }
-}
