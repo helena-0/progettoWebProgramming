@@ -815,6 +815,8 @@ a{
 }
 
 @media(max-width: 768px){
+    #sinistra{display: none;}
+    #destra{display: none;}
 
     #numero-uno{display: none;}
 
@@ -939,3 +941,15 @@ a{
     }
 }
 
+@media(max-width:500px){
+    .categorie div{
+    padding-left: 13px;
+    padding-right: 13px;
+    }
+
+    .categorie div{
+        font-size: 75%;
+    }
+    
+    #blocco-novita #tre{display: none;}
+}
