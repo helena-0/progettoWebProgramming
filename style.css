@@ -94,6 +94,7 @@ a{
     text-decoration: underline;
 }
 
+
 /*icone è la flexbox che contiene le tre icone a destra*/
 .icone{
     display: flex;
@@ -137,8 +138,40 @@ a{
     border-bottom: 2px solid transparent;
 }
 
+header{
+    position: relative;
+}
+
+.voce-menu{
+    position: static;
+}
+
+#barra-menu .voce-menu:hover a {
+    border-bottom: 2px solid #e30613;
+}
+
+/*#barra-menu a{
+    padding-bottom: 7px;
+    border-bottom: 2px solid transparent;
+}
+
 #barra-menu a:hover{
     border-bottom: 2px solid #e30613;
+}*/
+
+.barra-menu-aperto{
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    top: 100%; 
+    left: 0;
+    
+    display: none;
+    z-index: 10; /*CHIEDERE SE POSSO USARLO*/
+}
+
+.voce-menu:hover .barra-menu-aperto {
+    display: block;
 }
 
 
@@ -213,11 +246,11 @@ a{
     align-items: center;
 }
 
-#sinistra{
+.sinistra{
     left: 70px;
 }
 
-#destra{
+.destra{
     right: 70px;
 }
 
@@ -493,6 +526,7 @@ a{
 #blocco-novita .libro{
     display: flex;
     flex-direction: column;
+    position: relative; /*ELIMINARE SE NON FACCIO L'OPZIONE DEL BLOCCO CHE SPUNTA*/
     padding: 20px;
     width: 20%;
     margin-left: 0;
@@ -566,6 +600,54 @@ a{
     text-decoration: line-through;
 }
 
+#blocco-novita .icone{
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    height: 35px;
+    bottom: 34%;
+
+    align-items: center;
+}
+
+.pulsante-freccia{
+    display: flex;
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+
+    background-color: white;
+    border: 1px solid black;
+    font-weight: 500;
+
+    width: 10px;
+    height: 10px;
+    padding: 15px;
+    border-radius: 80px;
+
+    align-items: center;
+}
+
+#blocco-novita .pulsante-freccia{
+    top: 90%;
+    width: 8px;
+    height: 8px;
+    padding: 13px;
+    border-radius: 70px;
+    justify-content: center;
+}
+
+#blocco-novita .pulsante-freccia img{
+    width: 250%;
+}
+
+#blocco-novita .sinistra{
+    left: 20px;
+}
+
+#blocco-novita .destra{
+    right: 20px;
+}
 
 /*footer*/
 /*la parte del footer grigio*/
@@ -812,6 +894,10 @@ a{
     }   
     
     #blocco-novita #uno{display: none;}
+
+    .footer-informazioni div{
+        flex-wrap: wrap;
+    }
 }
 
 @media(max-width: 768px){
