@@ -5,15 +5,15 @@ body{
 
 
 a{
- cursor: pointer;
+ text-decoration: none;
+ color: inherit;
 }
 
 /*header*/
-#bordo{
+#bordo-nav{
     background-color: #e30613;
 }
 
-/*navservizi è la flexbox che contiene la flexbox navserviziinterno che a sua volta contiene le scritte per i servizi*/
 #navservizi{
     max-width: 1150px;
     margin: 0 auto;
@@ -21,7 +21,7 @@ a{
     color: white;
     font-weight: 500;
     font-size: .75em;
-    height: 5.5vh;
+    height: 40px;
 
     justify-content: flex-end;
 }
@@ -38,7 +38,6 @@ a{
     padding-left: 4%;
 }
 
-/*barra-superiore è la flexbox che contiene il logo, la barra di ricerca, la scritta ricerca avanzata, e le tre icone*/
 .barra-superiore{
     display: flex;
     height: 95px;
@@ -50,7 +49,7 @@ a{
 }
 
 .logo{
-    height: 10vh;
+    height: 100px;
     cursor: pointer;
 }
 
@@ -78,24 +77,21 @@ a{
 }
 
 .barra-ricerca .logo{
-    height: 4vh;
+    height: 40px;
 }
 
-/*lo uso per tutte le icone: lente, preferiti, carrello, profilo*/
 .icone .logo{
-    height: 4vh;
+    height: 30px;
 }
 
 #ricerca a{
-    width: 10%; /*grandezza della casella che contiene ricerca avanzata per fare andare a capo*/
+    width: 10%; 
     font-weight: 550;
     font-size: .75em;
     padding-left: 2%;
     text-decoration: underline;
 }
 
-
-/*icone è la flexbox che contiene le tre icone a destra*/
 .icone{
     display: flex;
     width: 15%;
@@ -117,11 +113,10 @@ a{
 }
 
 .consegne .logo{
-    height: 4vh;
+    height: 40px;
     cursor: default;
 }
 
-/*barra-menu è la flexbox che contiene tutti i menu in basso al centro*/
 #barra-menu{
     display: flex;
     max-width: 1150px;
@@ -149,15 +144,6 @@ header{
 #barra-menu .voce-menu:hover a {
     border-bottom: 2px solid #e30613;
 }
-
-/*#barra-menu a{
-    padding-bottom: 7px;
-    border-bottom: 2px solid transparent;
-}
-
-#barra-menu a:hover{
-    border-bottom: 2px solid #e30613;
-}*/
 
 .barra-menu-aperto{
     background-color: white;
@@ -229,29 +215,28 @@ header{
     cursor: pointer;
 }
 
-/*barra superiore a 1024px*/
 
 #barra-superiore1024{
     display: none;
     height: 30px;
     max-width: 1024px;
     margin: 0 auto;
-    width: 96%;
+    width: 100%;
     margin-top: 20px;
 
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
 #barra-superiore1024 .logo{
     display: none;
-    height: 6vh;
+    height: 60px;
     cursor: pointer;
 }
 
 #barra-superiore1024 .icone .logo{
     display: none;
-    height: 4vh;
+    height: 30px;
     cursor: pointer;
 }
 
@@ -270,7 +255,6 @@ header{
 }
 
 
-/*banner*/
 #banner{
     position: relative;
 }
@@ -308,7 +292,6 @@ header{
     right: 70px;
 }
 
-/*classifica*/
 #blocco-classifica{
     display: flex;
     flex-direction: column;
@@ -319,7 +302,6 @@ header{
     align-items: center;
 }
 
-/*sezione superiore con LIBRI, FILM, MUSICA, GIOCHI*/
 #classifica-categorie{
     display: flex;
 }
@@ -353,7 +335,6 @@ header{
     width: 95%;
 }
 
-/*specifiche per il libro in prima posizione*/
 #primo-posto{
     display: flex;
     flex-direction: column;
@@ -424,8 +405,6 @@ header{
     width: 80px;
 }
 
-
-/*specifiche per i libri a destra*/
 .libro{
     display: flex;
     padding: 5px;
@@ -435,7 +414,7 @@ header{
 
 #blocco-classifica .libro{
     margin-left: 9%;
-    width: 100%;
+    width: 95%;
 }
 
 .numero-classifica{
@@ -521,7 +500,8 @@ header{
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.libro:hover .titolo{
+.libro:hover .titolo span{
+    cursor: pointer;
     border-bottom: 2px solid black;
 }
 
@@ -531,6 +511,7 @@ header{
 }
 
 #primo-posto:hover .titolo{
+    cursor: pointer;
     border-bottom: 2px solid #b30600;
 }
 
@@ -560,11 +541,6 @@ header{
     border-bottom: 2px solid black;
 }
 
-
-
-
-/*novità da non perdere*/
-
 #blocco-novita{
     display: flex;
     flex-direction: column;
@@ -575,12 +551,9 @@ header{
     align-items: center;
 }
 
-
-
 #blocco-novita .libro{
     display: flex;
     flex-direction: column;
-    position: relative; /*ELIMINARE SE NON FACCIO L'OPZIONE DEL BLOCCO CHE SPUNTA*/
     padding: 20px;
     width: 20%;
     margin-left: 0;
@@ -614,6 +587,10 @@ header{
     font-size: 16px;
     font-weight: 600;
     border-bottom: 2px solid transparent;
+}
+
+#blocco-novita .libro:hover{
+    cursor: pointer;
 }
 
 #blocco-novita .titolo span:hover{
@@ -792,7 +769,6 @@ header{
     padding-right: 15px;
     height: 45px;
 }
-/****************************************/
 
 /*la parte del footer bianco*/
 #footer-bianco{
@@ -808,7 +784,6 @@ header{
     font-weight: 500;
 }
 
-/*primo rigo del footer (un flex) bianco che contiene due flexbox*/
 .footer-bianco1{
     display: flex;
     margin-bottom: 20px;
@@ -816,7 +791,6 @@ header{
     align-items: center;
 }
 
-/*primo flexbox del primo rigo che contiene la parte con le carte*/
 #footer-bianco1-sinistra{
     display: flex;
     width: 60%;
@@ -835,7 +809,6 @@ header{
     padding-right: 12px;
 }
 
-/*le icone sono a loro volta raggruppate in un flexbox*/
 #footer-bianco .icone{
     width: 100%;
     flex-wrap: wrap;
@@ -843,11 +816,10 @@ header{
 }
 
 #footer-bianco .icone img{
-    height: 4vh;
+    height: 30px;
     padding-right: 12px;
 }
 
-/*secondo flexbox della prima riga*/
 #footer-bianco1-destra{
     display: flex;
     width: 40%;
@@ -867,11 +839,10 @@ header{
 }
 
 #footer-bianco1-destra img{
-     height: 6vh;
+     height: 40px;
 }
 
 #footer-bianco2{
-    /*width: 100%;*/
     margin-bottom: 15px;
     line-height: 17px;
 }
@@ -886,8 +857,6 @@ header{
     line-height: 15px;
 }
 
-/*****************************************/
-
 .footer-tendina768{
     display: none;
     
@@ -900,7 +869,7 @@ header{
 }
 
 .footer-tendina768 img{
-    height: 3vh;
+    height: 30px;
 }
 
 .footer-grigio-icone1-768{
@@ -911,14 +880,14 @@ header{
 }
 
 #logo-bianco768{
-    height: 12vh;
+    height: 30px;
     margin-top: -15px;
     margin-left: -15px;
     margin-bottom: 20px;
 }
 
 @media (max-width: 1024px){
-    #bordo{display: none;}
+    #bordo-nav{display: none;}
     #navservizi{display: none;}
     .barra-superiore{display: none;}
     #barra-menu{display: none;}
@@ -948,8 +917,8 @@ header{
 }
 
 @media(max-width: 768px){
-    #sinistra{display: none;}
-    #destra{display: none;}
+    .sinistra{display: none;}
+    .destra{display: none;}
 
     #numero-uno{display: none;}
 
@@ -985,8 +954,15 @@ header{
         max-width: 110px;
     }
 
+    #classifica-categorie div{
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: 70%;
+    font-weight: 700;
+}
+
     #blocco-classifica .libro{
-        width: 350px;
+        width: 300px;
     }
 
     #blocco-classifica .sezione{
