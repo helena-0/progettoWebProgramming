@@ -167,13 +167,67 @@ header{
     left: 0;
     
     display: none;
-    z-index: 10; /*CHIEDERE SE POSSO USARLO*/
+    z-index: 10;
 }
 
 .voce-menu:hover .barra-menu-aperto {
-    display: block;
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+} 
+
+.contenitore-menu{
+    display: flex;
+    width: 100%;
+    padding-top: 24px;
+    margin-left: 20%;
+    margin-right: 20%;
+
+    justify-content: space-around;
 }
 
+.menu-colonna{
+    display: flex;
+    flex-direction: column;
+    width: 216px;
+    padding-left: 16px;
+    padding-right: 16px; 
+    margin-bottom: 20px;
+}
+
+.menu-colonna section{
+    margin-bottom: 30px;
+}
+
+.menu-colonna .titoli-paragrafi{
+    color: #e30613;
+    font-weight: 680;
+    padding-bottom: 12px;
+}
+
+.link-menu div{
+    display: block;
+    text-decoration: none;
+    padding-bottom: 12px;
+    border-bottom: none;
+
+    color: black;
+    font-weight: 480;
+}
+
+.link-menu div span:hover{
+    border-bottom: 1px solid black;
+}
+
+.menu-colonna img{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.menu-colonna img:hover{
+    cursor: pointer;
+}
 
 /*barra superiore a 1024px*/
 
@@ -712,13 +766,6 @@ header{
     font-size: 1.1em;
     font-weight: 580;
 }
-
-/*.icone{
-    display: flex;
-    width: 15%;
-
-    justify-content: space-around;
-}*/
 
 #footer-grigio .icone{
     justify-content: flex-start;
