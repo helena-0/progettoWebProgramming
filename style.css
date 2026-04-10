@@ -3,10 +3,13 @@ body{
     font-family: 'Montserrat';
 }
 
-
 a{
  text-decoration: none;
- color: inherit;
+ color: black;
+}
+
+.bordo{
+    border-left: 1px solid black;
 }
 
 /*header*/
@@ -18,9 +21,6 @@ a{
     max-width: 1150px;
     margin: 0 auto;
     display: flex;
-    color: white;
-    font-weight: 500;
-    font-size: .75em;
     height: 40px;
 
     justify-content: flex-end;
@@ -29,11 +29,18 @@ a{
 #navservizi div{   
     display: flex;
     width: 54%;
+    font-weight: 500;
+    font-size: .75em;
+
     justify-content:space-between;
     align-items: center;
 }
 
-#separatore{
+#navservizi div a{
+    color: white;
+}
+
+#navservizi .bordo{
     border-left: 1px solid white;
     padding-left: 4%;
 }
@@ -113,7 +120,7 @@ a{
 }
 
 .consegne .logo{
-    height: 40px;
+    height: 30px;
     cursor: default;
 }
 
@@ -319,10 +326,6 @@ header{
 #categoria-rossa{
     color: #b30600;
     border-bottom: 2px solid #b30600;
-}
-
-.bordo{
-    border-left: 1px solid black;
 }
 
 .sezione{
@@ -705,6 +708,10 @@ header{
     justify-content: space-around;
 }
 
+#footer-grigio .footer-informazioni a{
+    color: #f0f1f1;
+}
+
 .footer-informazioni2{
     display: flex;
     max-width: 1150px;
@@ -855,6 +862,7 @@ header{
 
 #footer-bianco3{
     line-height: 15px;
+    font-style: oblique;
 }
 
 .footer-tendina768{
@@ -879,9 +887,13 @@ header{
     justify-content: space-around;
 }
 
+.footer-grigio-icone1-768 .icone a{
+    color: #f0f1f1;
+}
+
 #logo-bianco768{
-    height: 30px;
-    margin-top: -15px;
+    height: 90px;
+
     margin-left: -15px;
     margin-bottom: 20px;
 }
