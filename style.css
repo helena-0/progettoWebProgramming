@@ -721,8 +721,9 @@ header{
     justify-content: space-around;
 }
 
-.footer-informazioni div{
+.footer-informazioni a{
     cursor: pointer;
+    display: block;
     margin-bottom: 12px;
 }
 
