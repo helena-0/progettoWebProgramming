@@ -174,8 +174,8 @@ header{
     display: flex;
     width: 100%;
     padding-top: 24px;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 10%;
+    margin-right: 15%;
 
     justify-content: space-around;
 }
@@ -185,7 +185,6 @@ header{
     flex-direction: column;
     width: 216px;
     padding-left: 16px;
-    padding-right: 16px; 
     margin-bottom: 20px;
 }
 
@@ -222,6 +221,44 @@ header{
     cursor: pointer;
 }
 
+#contenitore-promo{
+    background-image: url(immagini/promo-libro.jpg);
+    background-size: cover;
+    height: 100%;
+    width: 130%;
+    position: relative;
+    z-index: -2;
+}
+
+#contenitore-promo2{
+    background-image: url(immagini/promo-libro2.jpg);
+    background-size: cover;
+    height: 100%;
+    width: 130%;
+    position: relative;
+    z-index: -2;
+}
+
+.overlay-menu{
+    background-color:
+    rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+#contenitore-promo h2{
+    color: white;
+    margin-left: 10px;
+}
+
+#contenitore-promo2 h2{
+    color: white;
+    margin-left: 10px;
+}
 
 #barra-superiore1024{
     display: none;
