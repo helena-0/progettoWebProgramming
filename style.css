@@ -618,7 +618,7 @@ header{
     width: 150px;
 }
 
-.contenitore-immagine img {
+.copertina {
     width: 100%;
     display: block;
 }
@@ -709,7 +709,8 @@ header{
 }
 
 #blocco-novita .pulsante-freccia img{
-    width: 250%;
+    width: 20px;
+    height: 20px;
 }
 
 #blocco-novita .sinistra{
