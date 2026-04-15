@@ -1,3 +1,4 @@
+//scorrere le immagini del banner
 const FOTO_BANNER=[
     'immagini/banner1.jpg',
     'immagini/banner2.jpg',
@@ -43,3 +44,36 @@ scorrisx_banner.addEventListener('click', OnClickSX);
 
 const scorridx_banner=document.querySelector('#banner .destra');
 scorridx_banner.addEventListener('click', OnClickDX);
+
+
+//fare diventare i bottoni nella parte novità rossi 
+// DEVO POI FARLI DIVENTARE BIANCHI
+function BottoneRosso(){
+    const bottoneCliccato= event.currentTarget;
+    bottoneCliccato.classList.add('bottone-rosso');
+}
+
+const bottoni_novità=document.querySelectorAll('.libro .pulsante-freccia');
+
+for(let i=0; i<bottoni_novità.length; i++){
+        bottoni_novità[i].addEventListener('click', BottoneRosso);
+}
+
+//vista modale
+function loggin(){
+    const vistaModale=document.querySelector('#modal-view');
+    document.body.classList.add('no-scroll');
+    vistaModale.classList.remove('hidden');
+}
+
+const accesso=document.querySelector('#loggin');
+accesso.addEventListener('click', loggin);
+
+function chiudereModale(){
+    document.body.classList.remove('no-scroll');
+    vistaModale.classList.add('hidden');
+    vistaModale.innerHTML='';
+}
+
+const vistaModale=document.querySelector('#modal-view');
+vistaModale.addEventListener('click',chiudereModale);
