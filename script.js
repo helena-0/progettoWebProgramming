@@ -71,9 +71,9 @@ accesso.addEventListener('click', loggin);
 
 function chiudereModale(){
     document.body.classList.remove('no-scroll');
+    const vistaModale=document.querySelector('#modal-view');
     vistaModale.classList.add('hidden');
-    vistaModale.innerHTML='';
 }
 
-const vistaModale=document.querySelector('#modal-view');
-vistaModale.addEventListener('click',chiudereModale);
+const immagineX=document.querySelector('#modal-view .logo');
+immagineX.addEventListener('click',chiudereModale);

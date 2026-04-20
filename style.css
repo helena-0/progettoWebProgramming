@@ -1163,3 +1163,91 @@ header{
 #accesso img{
     height: 45px;
 }
+
+.dati-accesso{
+    display: flex;
+    flex-direction: column;
+
+    height: 45%;
+}
+
+.dati-accesso p{
+    font-size: 13px;
+    font-weight: 600;
+
+    margin-bottom: 0px;
+    padding-left:10px ;
+}
+
+.dati-accesso input{
+    height: 35px;
+}
+
+#password-dimenticata{
+    display: flex;
+    padding-top: 18px;
+    padding-bottom: 18px;
+
+    align-items: center;
+    justify-content: end;
+}
+
+#password-dimenticata a{
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+#boxAccesso button{
+    height: 40px;
+    width: 100%;
+
+    background-color: #263238;
+    color: white;
+}
+
+#boxAccesso button:hover{
+    height: 40px;
+    width: 100%;
+
+    color: #263238;
+    background-color: white;
+}
+
+#registrazione{
+    display: flex;
+    padding: 20px;
+    font-size: 14px;
+    border-bottom: 1px solid rgb(204, 204, 204);
+
+    justify-content: center;
+    align-items: center;
+}
+
+#registrazione a{
+    padding-left: 2px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+#alternativa-accesso{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#accesso-app{
+    display: flex;
+    padding: 10px;
+
+    align-items: center;
+    justify-content: space-around;
+}
+
+#accesso-app .logo{
+    height: 70px;
+    padding: 10px;
+}
+
