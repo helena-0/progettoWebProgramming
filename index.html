@@ -38,9 +38,13 @@
             </div>
 
             <div class="icone">
-                <img src="immagini/favorite.png" class="logo">
+                <img src="immagini/favorite.png" class="logo" id="preferiti">
                 <img src="immagini/cart.png" class="logo" >
                 <img src="immagini/person.png" class="logo" id="loggin">
+            </div>
+
+            <div id="pannello-preferiti" class="hidden">
+                        <h1>Preferiti</h1>
             </div>
         </div>
         <div class="consegne">
@@ -327,7 +331,9 @@
                     <div class="contenitore-immagine">
                         <img src="immagini/libronov1.jpg" class="copertina">
                         <div>
-                            <div class="pulsante-freccia sinistra">
+                            <div class="pulsante-freccia sinistra"
+                                data-immagine="immagini/libronov1.jpg">
+
                                 <img src="immagini/favorite.png">
                             </div>
                             <div class="pulsante-freccia destra">

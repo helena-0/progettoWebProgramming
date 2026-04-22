@@ -47,10 +47,13 @@ scorridx_banner.addEventListener('click', OnClickDX);
 
 
 //fare diventare i bottoni nella parte novità rossi 
-// DEVO POI FARLI DIVENTARE BIANCHI
 function BottoneRosso(){
     const bottoneCliccato= event.currentTarget;
-    bottoneCliccato.classList.add('bottone-rosso');
+
+    if(bottoneCliccato.classList.contains('bottone-rosso'))
+        bottoneCliccato.classList.remove('bottone-rosso');
+    else 
+        bottoneCliccato.classList.add('bottone-rosso');
 }
 
 const bottoni_novità=document.querySelectorAll('.libro .pulsante-freccia');
@@ -77,3 +80,16 @@ function chiudereModale(){
 
 const immagineX=document.querySelector('#modal-view .logo');
 immagineX.addEventListener('click',chiudereModale);
+
+
+//visualizza pannello dei Preferiti
+function visualizzaPreferiti(){
+    const pulsante=document.querySelector('#pannello-preferiti');
+    if(pulsante.classList.contains('hidden'))
+        pulsante.classList.remove('hidden');
+    else
+        pulsante.classList.add('hidden');
+}
+
+const pulsantePreferiti=document.querySelector('#preferiti')
+pulsantePreferiti.addEventListener('click',visualizzaPreferiti)
