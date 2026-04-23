@@ -47,13 +47,57 @@ scorridx_banner.addEventListener('click', OnClickDX);
 
 
 //fare diventare i bottoni nella parte novità rossi 
-function BottoneRosso(){
-    const bottoneCliccato= event.currentTarget;
+function BottoneRosso(event){
+    const bottone= event.currentTarget; 
 
-    if(bottoneCliccato.classList.contains('bottone-rosso'))
-        bottoneCliccato.classList.remove('bottone-rosso');
-    else 
-        bottoneCliccato.classList.add('bottone-rosso');
+    const pannello=document.querySelector('#pannello-preferiti');
+    const flexPreferiti=document.querySelector('#sezionej')
+    pannello.appendChild(flexPreferiti);
+
+    const copertinaLibro= document.createElement('img');
+    copertinaLibro.src=bottone.dataset.copertina;
+
+    const nomeLibro=bottone.dataset.titolo;
+    const prezzoLibro=bottone.dataset.prezzo;
+
+    if(bottone.classList.contains('bottone-rosso'))
+        bottone.classList.remove('bottone-rosso');
+    else{
+        bottone.classList.add('bottone-rosso');
+
+        /* SEZIONE
+            ARTICLE
+                Contenitore Immagine
+                Descrizione
+                    Titolo
+                    SottoTitolo
+        */
+
+
+        const elemPreferito= document.createElement('article');
+        elemPreferito.classList.add('libroj');
+        flexPreferiti.appendChild(elemPreferito);
+
+        const contenitoreImm=document.createElement('div');
+        contenitoreImm.classList.add("contenitore-immaginej");
+        elemPreferito.appendChild(contenitoreImm);
+        contenitoreImm.appendChild(copertinaLibro);
+
+        const descrizione=document.createElement('div');
+        descrizione.classList.add('libro-descrizionej');
+        elemPreferito.appendChild(descrizione);
+
+        const titolo=document.createElement('div');
+        titolo.classList.add("titolo");
+        titolo.textContent=nomeLibro;
+        descrizione.appendChild(titolo);
+
+        const prezzo=document.createElement('div');
+        prezzo.classList.add("sottotitolo");
+        prezzo.textContent=prezzoLibro;
+        descrizione.appendChild(prezzo);
+    }
+
 }
 
 const bottoni_novità=document.querySelectorAll('.libro .pulsante-freccia');
@@ -87,6 +131,8 @@ function visualizzaPreferiti(){
     const pulsante=document.querySelector('#pannello-preferiti');
     if(pulsante.classList.contains('hidden'))
         pulsante.classList.remove('hidden');
+
+
     else
         pulsante.classList.add('hidden');
 }

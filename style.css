@@ -108,6 +108,8 @@ a{
 
 
 #pannello-preferiti{
+    display: flex;
+    flex-direction:column;
     position: absolute;
     top: 65%;
     left: 0;
@@ -119,6 +121,45 @@ a{
 
 #pannello-preferiti.hidden{
     display: none;
+}
+
+#sezionej {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.libroj{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin-left: 35px;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenitore-immaginej{
+    position: relative;
+    width: 150px;
+    flex-shrink: 0;
+}
+
+.contenitore-immaginej img{
+    width: 100%;
+    display: block;
+}
+
+.libro-descrizionej{
+    display: flex;
+    flex-direction: column;
+    height: 95px;
+    margin-top: 10px;
+    padding: 5px;
+
+    justify-content: center;
+    align-items: center;
 }
 
 .consegne{
