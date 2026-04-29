@@ -60,22 +60,25 @@ function BottoneRosso(event){
     const nomeLibro=bottone.dataset.titolo;
     const prezzoLibro=bottone.dataset.prezzo;
 
-    if(bottone.classList.contains('bottone-rosso'))
+    if(bottone.classList.contains('bottone-rosso')){
         bottone.classList.remove('bottone-rosso');
+
+        //Verificare se è corretto
+        const LibriSalvati= flexPreferiti.querySelectorAll('.libroj');
+
+        for(let i=0; i<LibriSalvati.length; i++){
+            if(LibriSalvati[i].dataset.nome===nomeLibro){
+                LibriSalvati[i].remove();
+                break;
+            }
+        }
+    }
     else{
         bottone.classList.add('bottone-rosso');
 
-        /* SEZIONE
-            ARTICLE
-                Contenitore Immagine
-                Descrizione
-                    Titolo
-                    SottoTitolo
-        */
-
-
         const elemPreferito= document.createElement('article');
         elemPreferito.classList.add('libroj');
+        elemPreferito.dataset.nome = nomeLibro; //aggiunta che serve per poi verificare se il libro c'è per la rimozione
         flexPreferiti.appendChild(elemPreferito);
 
         const contenitoreImm=document.createElement('div');
@@ -88,12 +91,12 @@ function BottoneRosso(event){
         elemPreferito.appendChild(descrizione);
 
         const titolo=document.createElement('div');
-        titolo.classList.add("titolo");
+        titolo.classList.add("titoloj");
         titolo.textContent=nomeLibro;
         descrizione.appendChild(titolo);
 
         const prezzo=document.createElement('div');
-        prezzo.classList.add("sottotitolo");
+        prezzo.classList.add("sottotitoloj");
         prezzo.textContent=prezzoLibro;
         descrizione.appendChild(prezzo);
     }

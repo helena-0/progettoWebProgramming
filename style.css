@@ -130,6 +130,11 @@ a{
     margin-top: 20px;
 }
 
+#titolo-sezione{
+    margin-left: 80px;
+    color: #e30613;
+}
+
 .libroj{
     display: flex;
     flex-direction: column;
@@ -154,12 +159,25 @@ a{
 .libro-descrizionej{
     display: flex;
     flex-direction: column;
+    width: 80%;
     height: 95px;
     margin-top: 10px;
     padding: 5px;
 
-    justify-content: center;
     align-items: center;
+
+}
+
+.titoloj{
+    font-size: 16px;
+    font-weight: 630;
+    padding-left: 10px;
+    border-bottom: 2px solid transparent;
+}
+
+.sottotitoloj{
+    font-size: 12px;
+    margin-top: 3px;
 }
 
 .consegne{
