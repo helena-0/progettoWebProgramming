@@ -83,6 +83,14 @@ a{
     align-items: center;
 }
 
+.barra-ricerca input{
+    background-color: transparent;
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border: none;
+}
+
 .barra-ricerca .logo{
     height: 40px;
 }
@@ -1245,16 +1253,11 @@ header{
     height: 45%;
 }
 
-.dati-accesso p{
-    font-size: 13px;
-    font-weight: 600;
-
-    margin-bottom: 0px;
-    padding-left:10px ;
-}
-
 .dati-accesso input{
     height: 35px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    outline: none;
 }
 
 #password-dimenticata{
