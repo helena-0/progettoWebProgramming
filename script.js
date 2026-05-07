@@ -1,4 +1,3 @@
-//scorrere le immagini del banner
 const FOTO_BANNER=[
     'immagini/banner1.jpg',
     'immagini/banner2.jpg',
@@ -46,7 +45,6 @@ const scorridx_banner=document.querySelector('#banner .destra');
 scorridx_banner.addEventListener('click', OnClickDX);
 
 
-//fare diventare i bottoni nella parte novità rossi 
 function BottoneRosso(event){
     const bottone= event.currentTarget; 
 
@@ -63,7 +61,6 @@ function BottoneRosso(event){
     if(bottone.classList.contains('bottone-rosso')){
         bottone.classList.remove('bottone-rosso');
 
-        //Verificare se è corretto
         const LibriSalvati= flexPreferiti.querySelectorAll('.libroj');
 
         for(let i=0; i<LibriSalvati.length; i++){
@@ -78,7 +75,7 @@ function BottoneRosso(event){
 
         const elemPreferito= document.createElement('article');
         elemPreferito.classList.add('libroj');
-        elemPreferito.dataset.nome = nomeLibro; //aggiunta che serve per poi verificare se il libro c'è per la rimozione
+        elemPreferito.dataset.nome = nomeLibro; 
         flexPreferiti.appendChild(elemPreferito);
 
         const contenitoreImm=document.createElement('div');
@@ -109,7 +106,6 @@ for(let i=0; i<bottoni_novità.length; i++){
         bottoni_novità[i].addEventListener('click', BottoneRosso);
 }
 
-//vista modale
 function loggin(){
     const vistaModale=document.querySelector('#modal-view');
     document.body.classList.add('no-scroll');
@@ -129,7 +125,6 @@ const immagineX=document.querySelector('#modal-view .logo');
 immagineX.addEventListener('click',chiudereModale);
 
 
-//visualizza pannello dei Preferiti
 function visualizzaPreferiti(){
     const pulsante=document.querySelector('#pannello-preferiti');
     if(pulsante.classList.contains('hidden'))
@@ -142,3 +137,70 @@ function visualizzaPreferiti(){
 
 const pulsantePreferiti=document.querySelector('#preferiti')
 pulsantePreferiti.addEventListener('click',visualizzaPreferiti)
+
+
+function onResponse(response) {
+    if(response.ok) {
+        return response.json();
+    } else {
+        return null;
+    }
+}
+
+function onJson(json) {
+    console.log('JSON ricevuto');
+    
+    const containerRisultati = document.querySelector('#risultati-ricerca');
+    containerRisultati.classList.remove('hidden');
+
+    const library = document.querySelector('#sezione-ricerca');
+    library.innerHTML = '';
+    
+    let num_results = json.num_found;
+    if (num_results > 6) {
+        num_results = 6;
+    }
+
+    // Processa ciascun risultato
+    for(let i=0; i<num_results; i++) {
+        const doc = json.docs[i]
+        const title = doc.title;
+        const cover_url = 'http://covers.openlibrary.org/b/id/' + doc.cover_i + '-M.jpg';
+        
+        const book = document.createElement('div');
+        book.classList.add('libro-ricerca');
+        
+        const img = document.createElement('img');
+        img.src = cover_url;
+        
+        const caption = document.createElement('span');
+        caption.textContent = title;
+        
+        book.appendChild(img);
+        book.appendChild(caption);
+        caption.classList.add('descrizione-ricerca')
+        library.appendChild(book);
+    }
+}
+
+
+function search(event) {
+    // Impedisci il submit del form
+    event.preventDefault();
+    
+    // Leggi valore del campo di testo
+    const author_input = document.querySelector('.barra-ricerca input');
+    const author_value = encodeURIComponent(author_input.value);
+    console.log('Eseguo ricerca: ' + author_value);
+    
+    // Prepara la richiesta (Uso q= per ricerca generale anziché author= per farti cercare di tutto)
+    const rest_url = 'http://openlibrary.org/search.json?q=' + author_value;
+    console.log('URL: ' + rest_url);
+    
+    // Esegui fetch
+    fetch(rest_url).then(onResponse).then(onJson);
+}
+
+// Aggiungi event listener al form
+const form = document.querySelector('#ricerca');
+form.addEventListener('submit', search);

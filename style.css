@@ -117,6 +117,49 @@ a{
     justify-content: space-around;
 }
 
+#risultati-ricerca{
+    display: flex;
+    flex-direction:column;
+    position: absolute;
+    top: 58%;
+    left: 31.2%;
+    width: 60%;
+    height: 500px;
+    z-index: 1;
+    background-color:#f5f5f5;
+}
+
+#risultati-ricerca.hidden{
+    display: none;
+}
+
+#titolo-ricerca{
+    margin-left: 20px;
+    color: #e30613;
+}
+
+#sezione-ricerca{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.libro-ricerca{
+    display: flex;
+    padding: 5px;
+    margin-left: 35px;
+    width: 300px;
+}
+
+.libro-ricerca img{
+    width: 70px;
+}
+
+.descrizione-ricerca{
+    height: 95px;
+    margin-top: 10px;
+    padding: 5px;
+}
 
 #pannello-preferiti{
     display: flex;

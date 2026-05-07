@@ -29,12 +29,17 @@
         <div class="barra-superiore"> 
             <div><img src="immagini/logo.png" class="logo"></div>
 
-            <div id="ricerca">        
+            <form id="ricerca">        
                 <div class="barra-ricerca">
                     <input type="text" placeholder="Ciao, cosa vuoi cercare?">
                     <img src="immagini/search.png" class="logo">
                 </div>
                 <a>Ricerca avanzata</a>
+            </form>
+
+            <div id="risultati-ricerca" class="hidden">
+                <h3 id="titolo-ricerca">Risultati ricerca:</h3>
+                <div id="sezione-ricerca"></div>
             </div>
 
             <div class="icone">
@@ -44,10 +49,8 @@
             </div>
 
             <div id="pannello-preferiti" class="hidden">
-                        <h1 id="titolo-sezione">Preferiti</h1>
-                <div id="sezionej">
-
-                </div>
+                <h1 id="titolo-sezione">Preferiti</h1>
+                <div id="sezionej"></div>
             </div>
         </div>
         <div class="consegne">
