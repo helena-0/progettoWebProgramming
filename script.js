@@ -1,8 +1,8 @@
 const FOTO_BANNER=[
     'immagini/banner1.jpg',
     'immagini/banner2.jpg',
-    'immagini/banner3.png',
-    'immagini/banner4.png'
+    'immagini/banner3.jpg',
+    'immagini/banner4.jpg'
 ];
 
 let contatore=0
@@ -239,10 +239,6 @@ function onJsonRanking(json) {
         img.src = posterPath;
         imgCont.appendChild(img);
 
-        const rankNum = document.createElement('div');
-        rankNum.classList.add('numero-classifica');
-        rankNum.textContent = i + 1; 
-
         const desc = document.createElement('div');
         desc.classList.add('libro-descrizione');
         
@@ -258,7 +254,6 @@ function onJsonRanking(json) {
         desc.appendChild(date);
         
         movieArticle.appendChild(imgCont);
-        movieArticle.appendChild(rankNum);
         movieArticle.appendChild(desc);
         
         container.appendChild(movieArticle);

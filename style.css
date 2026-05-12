@@ -98,6 +98,13 @@ a{
     height: 40px;
 }
 
+.icone{
+    display: flex;
+    width: 15%;
+
+    justify-content: space-around;
+}
+
 .icone .logo{
     height: 30px;
 }
@@ -110,12 +117,6 @@ a{
     text-decoration: underline;
 }
 
-.icone{
-    display: flex;
-    width: 15%;
-
-    justify-content: space-around;
-}
 
 #risultati-ricerca{
     display: flex;
@@ -457,11 +458,11 @@ header{
 }
 
 .sinistra{
-    left: 70px;
+    left: 5%;
 }
 
 .destra{
-    right: 70px;
+    right: 5%;
 }
 
 #blocco-classifica{
@@ -765,15 +766,6 @@ header{
     border-bottom: 2px solid black;
 }
 
-.sottotitolo{
-    font-size: 12px;
-    margin-top: 3px;
-    margin-bottom: 5px;
-}
-
-.sottotitolo span{
-    font-weight: 600;
-}
 
 #blocco-novita .stelle img{
     width: 90px;
@@ -809,24 +801,6 @@ header{
     align-items: center;
 }
 
-.pulsante-freccia{
-    display: flex;
-    position: absolute;
-    cursor: pointer;
-    top: 50%;
-
-    background-color: white;
-    border: 1px solid black;
-    font-weight: 500;
-
-    width: 10px;
-    height: 10px;
-    padding: 15px;
-    border-radius: 80px;
-
-    align-items: center;
-}
-
 #blocco-novita .pulsante-freccia{
     top: 90%;
     width: 8px;
@@ -849,29 +823,37 @@ header{
     right: 20px;
 }
 
-#layout-due-colonne{
+#layout-film{
     display: flex;
     flex-direction: column;
     margin-top: 50px;
     margin-bottom: 50px;
-    margin-left: 90px;
-    margin-right: 90px;
+    margin-left: 70px;
+    margin-right: 70px;
 
 }
 
 
 #lista-ranking-film{
     display: flex;
+    flex-wrap: wrap;
 }
 
 #lista-ranking-film article{
+    display: flex;
+    width: 200px;
+    height: 250px;
+    flex-direction: column;
+    align-items: center;
     padding: 10px;
 }
 
-#colonna-ricerca-destra {
-    display: flex;
-    padding-right: 10%;
+#lista-ranking-film article img{
+     width: 110px;
+}
 
+#riga-ricerca {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -1183,8 +1165,11 @@ header{
 }
 
 @media(max-width: 768px){
-    .sinistra{display: none;}
-    .destra{display: none;}
+    .pulsante-freccia{
+        width: 5px;
+        height: 5px;
+        padding: 12px;
+    }
 
     #numero-uno{display: none;}
 
