@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
 </head>
 <body>
     <header>
@@ -31,8 +32,8 @@
 
             <form id="ricerca">        
                 <div class="barra-ricerca">
-                    <input type="text" placeholder="Ciao, cosa vuoi cercare?">
-                    <img src="immagini/search.png" class="logo">
+                    <input type="text" placeholder="Ciao, cosa vuoi cercare?" class="input-ricerca">
+                    <input type="image" src="immagini/search.png" class="logo">
                 </div>
                 <a>Ricerca avanzata</a>
             </form>
@@ -196,8 +197,8 @@
             </div>
         </div>
         <div class="barra-ricerca barra-ricerca1024">
-            <span>Ciao , cosa vuoi cercare?</span>
-            <img src="immagini/search.png" class="logo">
+            <input type="text" placeholder="Ciao, cosa vuoi cercare?" class="input-ricerca">
+            <input type="image" src="immagini/search.png" class="logo" alt="Cerca">
         </div>
         <div class="consegne consegne1024">
             <div><img src="immagini/camion-delivery.png" class="logo"></div>
@@ -497,14 +498,14 @@
     
     <section id="layout-film">  
         <div id="riga-film">
-            <h2>Classifica Film del Giorno</h2>
+            <h2>Film più visti al cinema</h2>
             <div id="lista-ranking-film" class="sezione"></div>
         </div>
         <div id="riga-ricerca">
             <div id="ricerca-film">
                 <form id="form-ricerca-film">
                     <div class="barra-ricerca">
-                        <input type="text" id="input-ricerca-film" placeholder="Cerca trama film...">
+                        <input type="text" placeholder="Cerca trama film..." class="input-ricerca">
                     </div>
                     <button type="submit">Cerca</button>
                 </form>

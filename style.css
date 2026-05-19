@@ -60,7 +60,6 @@ a{
     cursor: pointer;
 }
 
-/*ricerca è la flexbox che contiene la barra di ricerca e la scritta ricerca avanzata*/
 #ricerca{
     display: flex;
     align-items: center;
@@ -83,7 +82,7 @@ a{
     align-items: center;
 }
 
-.barra-ricerca input{
+.input-ricerca{
     background-color: transparent;
     font-family: 'Montserrat';
     font-weight: 500;

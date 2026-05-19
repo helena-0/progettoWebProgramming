@@ -312,7 +312,7 @@ function onJsonRicerca(json) {
 
 function cercaFilmTramiteForm(event) {
     event.preventDefault();
-    const inputRicerca = document.querySelector('#input-ricerca-film');
+    const inputRicerca = document.querySelector('#layout-film .input-ricerca');
     const testoCercato = encodeURIComponent(inputRicerca.value);
 
     if (!testoCercato){
