@@ -59,7 +59,8 @@ h1{
 #registrazione div{
     display: flex;
     flex-direction: column;
-    padding-bottom:24px;
+    padding-bottom:27px;
+    position: relative;
 }
 
 input{
@@ -78,3 +79,21 @@ input{
     color: #263238;
     background-color: white;
 }
+
+#registrazione span{
+    display: none;
+    font-size: 10px;
+    bottom: 11px;
+    left: 0;
+    position: absolute;
+}
+
+#registrazione .errore span {
+    display: block;
+    color: #e30613;
+}
+
+.errore input {
+    border-color: #e30613;
+}
+
