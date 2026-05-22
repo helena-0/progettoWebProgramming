@@ -74,6 +74,7 @@
         <div id="body_sx">
             <img src="immagini/registration-visual.jpg">
         </div>
+        <div id="body_up"></div>
         <section id="body_dx">  
             <div id="indietro">
                 <img src="immagini/freccia_rossa.png">

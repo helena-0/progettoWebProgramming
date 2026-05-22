@@ -97,3 +97,26 @@ input{
     border-color: #e30613;
 }
 
+#body_up{
+    display: none;
+    color: #e30613;
+    height: 20px;
+}
+
+@media(max-width: 1024px){
+
+    body{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #body_sx{
+        display: none;
+    }
+
+    #body_up{
+        display: inline;
+    }
+
+}
