@@ -1,3 +1,9 @@
+<?php
+    require_once 'auth.php';
+    $isLogged=checkAuth()
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +52,15 @@
             <div class="icone">
                 <img src="immagini/favorite.png" class="logo" id="preferiti">
                 <img src="immagini/cart.png" class="logo" >
-                <img src="immagini/person.png" class="logo" id="loggin">
+                <?php 
+                    if($isLogged==false){ ?>
+                            <img src="immagini/person.png" class="logo" id="loggin">
+                    <?php } 
+                    else{ ?>
+                        <a href="account.html">
+                            <img src="immagini/person_log.png" class="logo">
+                        </a>
+                <?php } ?>                
             </div>
 
             <div id="pannello-preferiti" class="hidden">
@@ -154,8 +168,8 @@
                                     <div><span>One piece</span></div>
                                     <div><span>Jujutsu Kaisen</span></div>
                                     <div><span>Fullmetal alchemist</span></div>
-                                    <div><span>Blue lock</div>
-                                    <div><span>Chainsow man</div>
+                                    <div><span>Blue lock</span></div>
+                                    <div><span>Chainsow man</span></div>
                                     <div><span>20th century boys</span></div>
                                 </div>
                             </section>
@@ -338,16 +352,18 @@
                     <div class="contenitore-immagine">
                         <img src="immagini/libronov1.jpg" class="copertina">
                         <div>
-                            <div class="pulsante-freccia sinistra"
-                                data-copertina="immagini/libronov1.jpg"
-                                data-titolo="La gioia è un duro lavoro"
-                                data-prezzo="15,20€"
-                                >                                
-                                <img src="immagini/favorite.png">
-                            </div>
-                            <div class="pulsante-freccia destra">
-                                <img src="immagini/cart.png">
-                            </div>
+                            <?php if($isLogged) { ?>
+                                <div class="pulsante-freccia sinistra"
+                                    data-copertina="immagini/libronov1.jpg"
+                                    data-titolo="La gioia è un duro lavoro"
+                                    data-prezzo="15,20€"
+                                    >                                
+                                    <img src="immagini/favorite.png">
+                                </div>
+                                <div class="pulsante-freccia destra">
+                                    <img src="immagini/cart.png">
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="libro-descrizione">
@@ -369,16 +385,18 @@
                     <div class="contenitore-immagine">
                         <img src="immagini/libronov2.jpg" class="copertina">
                         <div>
-                            <div class="pulsante-freccia sinistra"
-                                data-copertina="immagini/libronov2.jpg"
-                                data-titolo="Funny story. Un amore per finta"
-                                data-prezzo="17,00€"
-                            >
-                                <img src="immagini/favorite.png">
-                            </div>
-                            <div class="pulsante-freccia destra">
-                                <img src="immagini/cart.png">
-                            </div>
+                            <?php if($isLogged) { ?>
+                                <div class="pulsante-freccia sinistra"
+                                    data-copertina="immagini/libronov2.jpg"
+                                    data-titolo="Funny story. Un amore per finta"
+                                    data-prezzo="17,00€"
+                                >
+                                    <img src="immagini/favorite.png">
+                                </div>
+                                <div class="pulsante-freccia destra">
+                                    <img src="immagini/cart.png">
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="libro-descrizione">
@@ -400,16 +418,18 @@
                     <div class="contenitore-immagine">
                         <img src="immagini/libronov3.jpg" class="copertina">
                         <div>
-                            <div class="pulsante-freccia sinistra"
-                                data-copertina="immagini/libronov3.jpg"
-                                data-titolo="Vento e verità"
-                                data-prezzo="33,25€"
-                            >
-                                <img src="immagini/favorite.png">
-                            </div>
-                            <div class="pulsante-freccia destra">
-                                <img src="immagini/cart.png">
-                            </div>
+                            <?php if($isLogged) { ?>
+                                <div class="pulsante-freccia sinistra"
+                                    data-copertina="immagini/libronov3.jpg"
+                                    data-titolo="Vento e verità"
+                                    data-prezzo="33,25€"
+                                >
+                                    <img src="immagini/favorite.png">
+                                </div>
+                                <div class="pulsante-freccia destra">
+                                    <img src="immagini/cart.png">
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="libro-descrizione">
@@ -431,16 +451,18 @@
                     <div class="contenitore-immagine">
                         <img src="immagini/libro2.jpg" class="copertina">
                         <div>
-                            <div class="pulsante-freccia sinistra"
-                                data-copertina="immagini/libro2.jpg"
-                                data-titolo="Saggio sulla lucidità"
-                                data-prezzo="12,35€"
-                            >
-                                <img src="immagini/favorite.png">
-                            </div>
-                            <div class="pulsante-freccia destra">
-                                <img src="immagini/cart.png">
-                            </div>
+                            <?php if($isLogged) { ?>
+                                <div class="pulsante-freccia sinistra"
+                                    data-copertina="immagini/libro2.jpg"
+                                    data-titolo="Saggio sulla lucidità"
+                                    data-prezzo="12,35€"
+                                >
+                                    <img src="immagini/favorite.png">
+                                </div>
+                                <div class="pulsante-freccia destra">
+                                    <img src="immagini/cart.png">
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="libro-descrizione">
@@ -462,16 +484,18 @@
                     <div class="contenitore-immagine">
                         <img src="immagini/libronov5.jpg" class="copertina">
                         <div>
-                            <div class="pulsante-freccia sinistra"
-                                data-copertina="immagini/libronov5.jpg"
-                                data-titolo="Heated Rivarly"
-                                data-prezzo="17,00€"
-                            >
-                                <img src="immagini/favorite.png">
-                            </div>
-                            <div class="pulsante-freccia destra">
-                                <img src="immagini/cart.png">
-                            </div>
+                            <?php if($isLogged) { ?>
+                                <div class="pulsante-freccia sinistra"
+                                    data-copertina="immagini/libronov5.jpg"
+                                    data-titolo="Heated Rivarly"
+                                    data-prezzo="17,00€"
+                                >
+                                    <img src="immagini/favorite.png">
+                                </div>
+                                <div class="pulsante-freccia destra">
+                                    <img src="immagini/cart.png">
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="libro-descrizione">
@@ -760,7 +784,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <div id="footer-bianco">
             <div class="footer-bianco1">
@@ -812,6 +835,7 @@
                 - C.F. e P.I. 05329570963 - Reg. imprese di Milano Monza Brianza Lodi nr. 05329570963 - R.E.A. MI 1813088
                 - Capitale Sociale € 10.000,00 i.v. - A Socio Unico soggetta a direzione e coordinamento di Feltrinelli S.p.A
             </div>
+        </div>
     </footer>
     
     <section id="modal-view" class="hidden">

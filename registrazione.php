@@ -2,7 +2,7 @@
     require_once 'auth.php';
 
     if (checkAuth()) {
-        header("Location: index.html");
+        header("Location: index.php");
         exit;
     } 
 
@@ -44,7 +44,7 @@
             if (mysqli_query($conn, $query)) {
                 $_SESSION["user_id"] = mysqli_insert_id($conn);
                 mysqli_close($conn);
-                header("Location: index.html");
+                header("Location: index.php");
                 exit;
             } 
             else {
@@ -78,7 +78,7 @@
         <section id="body_dx">  
             <div id="indietro">
                 <img src="immagini/freccia_rossa.png">
-                <a href="index.html">Torna al sito</a>
+                <a href="index.php">Torna al sito</a>
             </div> 
             <div id="reg">        
                 <h1>Crea un account</h1>
