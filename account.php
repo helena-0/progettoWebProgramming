@@ -1,3 +1,25 @@
+<?php
+    require_once 'auth.php';
+    $userid = checkAuth();
+    if (!$userid) {
+        header("Location: index.php");
+        exit;
+    }
+
+    require_once 'dbconfig.php';
+    $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);
+
+    $query = "SELECT nome, cognome, email FROM utenti WHERE id = '$userid'";
+    $res = mysqli_query($conn, $query);
+
+    $user_data = mysqli_fetch_assoc($res);
+    
+    mysqli_close($conn);
+
+?>
+
+
+
 <!DOCTYPE html> 
 <html>
     <head>
@@ -217,7 +239,7 @@
                 <a href="#">CartaEffe</a>
                 <a href="#">I miei Ebook e Audiolibri</a>
                 <a href="#">Le mie recensioni</a>
-                <a href="#">Logout</a>
+                <a href="logout.php">Logout</a>
             </section>
 
             <div id="corpo_dx">
@@ -226,11 +248,11 @@
                     <div>
                         <article>
                             <h4>Email</h4>
-                            <div>Email</div>
+                            <p><?php echo $user_data['email']; ?></p>
                         </article>
                         <article>
-                            <h4>Email</h4>
-                            <div>Email</div>
+                            <h4>Nome e Cognome</h4>
+                            <p><?php echo $user_data['nome']. " " .$user_data['cognome'];?></p>
                         </article>
                     </div>
                 </section>

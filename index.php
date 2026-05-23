@@ -57,7 +57,7 @@
                             <img src="immagini/person.png" class="logo" id="loggin">
                     <?php } 
                     else{ ?>
-                        <a href="account.html">
+                        <a href="account.php">
                             <img src="immagini/person_log.png" class="logo">
                         </a>
                 <?php } ?>                
