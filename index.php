@@ -847,18 +847,21 @@
                 </span>
                 <div>Avrai accesso ai tuoi acquisti e al mondo Feltrinelli</div>
             </div>
-            <div>
-                <div class="dati-accesso">
-                    <input type="text" placeholder="Email">
+            <form id="form_login">
+                <div>
+                    <div class="dati-accesso">
+                        <input type="text" name="email" id="log_email" placeholder="Email">
+                    </div>
+                    <div class="dati-accesso">
+                        <input type="password" name="password" id="log_password" placeholder="Password">
+                    </div>
+                    <div id="password-dimenticata">
+                        <a href="#">Password dimenticata?</a>
+                    </div>
+                    <div id="log_errore"></div>
                 </div>
-                <div class="dati-accesso">
-                    <input type="text" placeholder="Password">
-                </div>
-                <div id="password-dimenticata">
-                    <a href="#">Password dimenticata?</a>
-                </div>
-            </div>
-            <button>Entra</button>
+                <button>Entra</button>
+            </form>
             <div id="registrazione">
                 <div>Non hai un account?</div>
                 <a href="registrazione.php">Registrati</a>

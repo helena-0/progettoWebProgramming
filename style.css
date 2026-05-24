@@ -1445,3 +1445,18 @@ header{
     padding: 10px;
 }
 
+#log_errore {
+    color: red;
+    font-size: 13px;
+    margin-top: 10px;
+    text-align: center;
+    display: none;
+}
+
+.block{
+    display: block;
+}
+
+.none{
+    display: none;
+}

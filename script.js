@@ -124,6 +124,39 @@ function chiudereModale(){
 const immagineX=document.querySelector('#modal-view .logo');
 immagineX.addEventListener('click',chiudereModale);
 
+//ACCESSO
+function onJsonLogin(json) {
+    if (json.success === true) {
+        window.location.reload();
+    } else {
+        const divErrore = document.querySelector('#log_errore');
+        divErrore.textContent = json.error;
+        divErrore.classList.add('block');
+    }
+}
+
+function onResponseLogin(response) {
+    return response.json();
+}
+
+function eseguiLogin(event) {
+    event.preventDefault();
+
+    const form = document.querySelector('#form_login');
+    
+    const divErrore = document.querySelector('#log_errore');
+    divErrore.classList.add('none');
+
+    const form_data = {method: 'post', body: new FormData(form)}; 
+
+    fetch('login.php', form_data).then(onResponseLogin).then(onJsonLogin); 
+}
+
+
+const formLogin = document.querySelector('#form_login'); // Cerchiamo l'ID esatto
+if (formLogin) {
+    formLogin.addEventListener('submit', eseguiLogin);
+}
 
 function visualizzaPreferiti(){
     const pulsante=document.querySelector('#pannello-preferiti');
