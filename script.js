@@ -100,11 +100,56 @@ function BottoneRosso(event){
 
 }
 
-const bottoni_novità=document.querySelectorAll('.libro .pulsante-freccia');
-
+const bottoni_novità=document.querySelectorAll('.libro .pulsante-freccia.sinistra');
 for(let i=0; i<bottoni_novità.length; i++){
         bottoni_novità[i].addEventListener('click', BottoneRosso);
 }
+
+// --- NUOVA PARTE PER IL CARRELLO ---
+
+function onJsonCarrello(json) {
+    if (json.success === true) {
+        console.log("Successo: " + json.messaggio);
+    } else {
+        console.log("Errore: " + json.error);
+    }
+}
+
+function onResponseCarrello(response) {
+    return response.json();
+}
+
+function aggiungiAlCarrello(event) {
+    const bottone = event.currentTarget; 
+
+    if (bottone.classList.contains('bottone-rosso')) {
+        bottone.classList.remove('bottone-rosso');
+    } else {
+        bottone.classList.add('bottone-rosso');
+    }
+
+    // Prendo i dati 
+    const copertinaLibro = bottone.dataset.copertina;
+    const nomeLibro = bottone.dataset.titolo;
+    const prezzoLibro = bottone.dataset.prezzo;
+
+    // Prepara il pacco da spedire
+    const dati_carrello = new FormData();
+    dati_carrello.append('titolo', nomeLibro);
+    dati_carrello.append('copertina', copertinaLibro);
+    dati_carrello.append('prezzo', prezzoLibro);
+
+    // Manda i dati al PHP del carrello (FETCH)
+    const opzioni = { method: 'post', body: dati_carrello };
+    fetch('api_aggiungi_carrello.php', opzioni).then(onResponseCarrello).then(onJsonCarrello);
+}
+
+// Questo attacca la nuova funzione SOLO ai carrellini!
+const bottoni_carrello = document.querySelectorAll('.libro .pulsante-freccia.destra');
+for(let i = 0; i < bottoni_carrello.length; i++) {
+    bottoni_carrello[i].addEventListener('click', aggiungiAlCarrello);
+}
+
 
 function loggin(){
     const vistaModale=document.querySelector('#modal-view');
@@ -113,7 +158,9 @@ function loggin(){
 }
 
 const accesso=document.querySelector('#loggin');
-accesso.addEventListener('click', loggin);
+if(accesso){
+    accesso.addEventListener('click', loggin);
+}
 
 function chiudereModale(){
     document.body.classList.remove('no-scroll');
@@ -153,7 +200,7 @@ function eseguiLogin(event) {
 }
 
 
-const formLogin = document.querySelector('#form_login'); // Cerchiamo l'ID esatto
+const formLogin = document.querySelector('#form_login'); 
 if (formLogin) {
     formLogin.addEventListener('submit', eseguiLogin);
 }
@@ -162,8 +209,6 @@ function visualizzaPreferiti(){
     const pulsante=document.querySelector('#pannello-preferiti');
     if(pulsante.classList.contains('hidden'))
         pulsante.classList.remove('hidden');
-
-
     else
         pulsante.classList.add('hidden');
 }
@@ -243,9 +288,6 @@ const form = document.querySelector('#ricerca');
 form.addEventListener('submit', search);
 
 
-
-
-// --- CLASSIFICA FILM DEL GIORNO (TMDb) ---
 
 function onResponseRanking(response) {
 
@@ -360,3 +402,4 @@ function cercaFilmTramiteForm(event) {
 
 const formRicerca = document.querySelector('#form-ricerca-film');
 formRicerca.addEventListener('submit', cercaFilmTramiteForm);
+
