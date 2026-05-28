@@ -105,6 +105,25 @@ for(let i=0; i<bottoni_novità.length; i++){
         bottoni_novità[i].addEventListener('click', BottoneRosso);
 }
 
+// --- RIPRISTINO COLORE CARRELLO AL CARICAMENTO ---
+
+function onJsonRipristinaCarrello(json) {
+    for (let i = 0; i < json.length; i++) {
+        const titoloLibroSalvato = json[i].titolo;
+        const bottone = document.querySelector('.pulsante-freccia.destra[data-titolo="' + titoloLibroSalvato + '"]');
+
+        if (bottone) {
+            bottone.classList.add('bottone-rosso');
+        }
+    }
+}
+
+function onResponseRipristinaCarrello(response) {
+    return response.json();
+}
+
+fetch('api_leggi_carrello.php').then(onResponseRipristinaCarrello).then(onJsonRipristinaCarrello);
+
 // --- NUOVA PARTE PER IL CARRELLO ---
 
 function onJsonCarrello(json) {

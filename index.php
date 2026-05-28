@@ -51,7 +51,15 @@
 
             <div class="icone">
                 <img src="immagini/favorite.png" class="logo" id="preferiti">
-                <img src="immagini/cart.png" class="logo" >
+                <?php 
+                    if($isLogged==false){ ?>
+                            <img src="immagini/cart.png" class="logo" >
+                    <?php } 
+                    else{ ?>
+                        <a href="carrello.php">
+                            <img src="immagini/cart.png" class="logo" >
+                        </a>
+                <?php } ?> 
                 <?php 
                     if($isLogged==false){ ?>
                             <img src="immagini/person.png" class="logo" id="loggin">

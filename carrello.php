@@ -1,32 +1,10 @@
-<?php
-    require_once 'auth.php';
-    $userid = checkAuth();
-    if (!$userid) {
-        header("Location: index.php");
-        exit;
-    }
-
-    require_once 'dbconfig.php';
-    $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);
-
-    $query = "SELECT nome, cognome, email FROM utenti WHERE id = '$userid'";
-    $res = mysqli_query($conn, $query);
-
-    $user_data = mysqli_fetch_assoc($res);
-    
-    mysqli_close($conn);
-
-?>
-
-
-
 <!DOCTYPE html> 
 <html>
     <head>
         <title>Account</title>
-        <link rel="stylesheet" href="account.css" />
+        <link rel="stylesheet" href="carrello.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <script src="carrello.js" defer></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -232,13 +210,13 @@
             </div>
         </header>
 
-        <div id="corpo">
+         <div id="corpo">
             <section id="dati">
                 <div>I miei dati</div>
                 <a href="#">Le mie carte di credito</a>
                 <a href="#">Indirizzi</a>
                 <a href="#">Ordini</a>
-                <a href="carrello.php">Liste dei desideri</a>
+                <a href="#">Liste dei desideri</a>
                 <a href="#">I miei eventi</a>
                 <a href="#">CartaEffe</a>
                 <a href="#">I miei Ebook e Audiolibri</a>
@@ -247,73 +225,9 @@
             </section>
 
             <div id="corpo_dx">
-                <section id="dati_dx">
-                    <h2>I miei dati</h2>
-                    <div>
-                        <article>
-                            <h4>Email</h4>
-                            <p><?php echo $user_data['email']; ?></p>
-                        </article>
-                        <article>
-                            <h4>Nome e Cognome</h4>
-                            <p><?php echo $user_data['nome']. " " .$user_data['cognome'];?></p>
-                        </article>
-                    </div>
-                </section>
-                <section id="account">
-                    <h3>Collega i tuoi account social</h3>
-                    <article>
-                        <div class="icone">
-                            <img src="immagini/cerchio-google-grigio.png">
-                            <span>Google</span>
-                        </div>
-                        <div class="icone">
-                            <img src="immagini/cerchio-paypall-grigio.png">
-                            <span>PayPal</span>
-                        </div>
-                        <div class="icone">
-                            <img src="immagini/cerchio-apple-grigio.png">
-                            <span>Apple</span>
-                        </div>
-
-                    </article>
-                </section>
-                <section id="consensi">
-                    <h3>Consensi e privacy</h3>
-                    <div class="check">
-                        <img src="immagini/check-grigia.png">
-                        <div>
-                            Autorizzo i Contitolari ad inviare direttamente comunicazioni commerciali su prodotti e servizi dei 
-                            Contitolari, società del Gruppo Feltrinelli e partner commerciali, a mezzo di sistemi automatizzati via e-mail, 
-                            sms o simili e a mezzo del servizio postale, così come descritto all’art. 3 lett. e) dell’informativa privacy.
-                        </div>
-                    </div>
-                    <div id="check2">
-                        <div class="check">
-                            <img src="immagini/check-grigia.png">
-                            <div>
-                                Comunicazione via Mail
-                            </div>
-                        </div>
-                        <div class="check">
-                            <img src="immagini/check-grigia.png"> 
-                            <div>
-                                Comunicazione via SMS
-                            </div>
-                        </div>
-                        <div class="check">
-                            <img src="immagini/check-grigia.png">
-                            <div>
-                                Comunicazione via WhatsApp
-                            </div>
-                        </div>
-                        <div class="check">
-                            <img src="immagini/check-grigia.png">
-                            <div>
-                                Altre tipologie di comunicazioni (es. telefono, posta, ecc.)
-                            </div>
-                        </div>
-                    </div>
+                <section id="carrello">
+                    <h2>Il mio carrello</h2>
+                   
                 </section>
 
             </div>

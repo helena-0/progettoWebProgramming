@@ -328,6 +328,7 @@ header{
 
 .link-menu div{
     display: block;
+    cursor: pointer;
     text-decoration: none;
     padding-bottom: 12px;
     border-bottom: none;
