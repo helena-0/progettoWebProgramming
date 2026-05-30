@@ -103,6 +103,24 @@ input{
     height: 20px;
 }
 
+#registrazione #div-ricorda{
+    flex-direction: row;
+    width: 100%;
+    padding-bottom: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+#div-ricorda input{
+    width: 18px;                 
+    height: 18px;                
+    cursor: pointer;
+}
+
+#registrazione #bottone-reg{
+    padding-bottom: 0px;
+}
+
 @media(max-width: 1024px){
 
     body{

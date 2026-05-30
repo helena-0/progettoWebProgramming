@@ -18,6 +18,8 @@
                 
                 $_SESSION["email"] = $entry['email'];
                 $_SESSION["user_id"] = $entry['id']; 
+
+                setcookie("email_salvata", $_POST["email"], time() + (86400 * 7), "/");
                 
                 mysqli_free_result($res);
                 mysqli_close($conn);

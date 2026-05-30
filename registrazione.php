@@ -43,6 +43,11 @@
 
             if (mysqli_query($conn, $query)) {
                 $_SESSION["user_id"] = mysqli_insert_id($conn);
+
+                if (isset($_POST["ricordami"]) && $_POST["ricordami"] == "si") {
+                    setcookie("email_salvata", $_POST["email"], time() + (86400 * 7), "/");
+                }
+
                 mysqli_close($conn);
                 header("Location: index.php");
                 exit;
@@ -108,7 +113,11 @@
                         <input type='password' name='conferma_password' id="conferma_password"<?php if(isset($_POST["conferma_password"])){echo "value=\"".$_POST["conferma_password"]."\"";} ?>>
                         <span>Le password non coincidono</span>
                     </div>
-                    <div>
+                    <div id="div-ricorda">
+                        <label for="reg_ricordami">Ricordami</label>
+                        <input type='checkbox' name='ricordami' id="reg_ricordami" value="si">
+                    </div>
+                    <div id="bottone-reg">
                         <input type='submit' value="Registrati" id="submit">
                     </div>
                 </form>

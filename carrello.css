@@ -782,6 +782,12 @@ h3{
 }
 
 @media(max-width: 768px){
+
+    #corpo{
+        flex-direction: column;
+    }
+
+
     .footer-informazioni{display: none;}
 
     #footer-grigio{

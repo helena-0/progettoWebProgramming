@@ -807,6 +807,22 @@ h3{
 }
 
 @media(max-width: 768px){
+
+    #corpo{
+        flex-direction: column;
+    }
+
+    #dati_dx div{
+        flex-direction: column;
+    }
+
+    #dati_dx article{
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        margin-bottom: 20px;
+    }
+
     .footer-informazioni{display: none;}
 
     #footer-grigio{

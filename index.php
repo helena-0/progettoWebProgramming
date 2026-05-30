@@ -1,6 +1,11 @@
 <?php
     require_once 'auth.php';
-    $isLogged=checkAuth()
+    $isLogged=checkAuth();
+
+    $email_precompilata = "";
+    if (isset($_COOKIE["email_salvata"])) {
+        $email_precompilata = $_COOKIE["email_salvata"];
+    }
 ?>
 
 
@@ -888,7 +893,7 @@
             <form id="form_login">
                 <div>
                     <div class="dati-accesso">
-                        <input type="text" name="email" id="log_email" placeholder="Email">
+                        <input type="text" name="email" id="log_email" placeholder="Email" value="<?php echo $email_precompilata; ?>">
                     </div>
                     <div class="dati-accesso">
                         <input type="password" name="password" id="log_password" placeholder="Password">
