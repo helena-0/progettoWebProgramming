@@ -13,6 +13,10 @@ CREATE TABLE carrello(
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     titolo VARCHAR(255) NOT NULL,
+    autore VARCHAR(255) NOT NULL,
     copertina VARCHAR(255) NOT NULL,
-    prezzo VARCHAR(50) NOT NULL
+    prezzo VARCHAR(50) NOT NULL,
+    prezzoSconto VARCHAR(50) NOT NULL
 );
+
+DROP TABLE carrello;

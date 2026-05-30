@@ -151,12 +151,16 @@ function aggiungiAlCarrello(event) {
     const copertinaLibro = bottone.dataset.copertina;
     const nomeLibro = bottone.dataset.titolo;
     const prezzoLibro = bottone.dataset.prezzo;
+    const autoreLibro = bottone.dataset.autore;
+    const prezzoScontoLibro = bottone.dataset.prezzoSconto;
 
     // Prepara il pacco da spedire
     const dati_carrello = new FormData();
     dati_carrello.append('titolo', nomeLibro);
     dati_carrello.append('copertina', copertinaLibro);
     dati_carrello.append('prezzo', prezzoLibro);
+    dati_carrello.append('autore', autoreLibro);
+    dati_carrello.append('prezzoSconto', prezzoScontoLibro);
 
     // Manda i dati al PHP del carrello (FETCH)
     const opzioni = { method: 'post', body: dati_carrello };

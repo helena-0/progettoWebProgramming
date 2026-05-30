@@ -23,7 +23,9 @@
         $libro["titolo"] = $row["titolo"];
         $libro["copertina"] = $row["copertina"];
         $libro["prezzo"] = $row["prezzo"];
-        
+        $libro["autore"] = $row["autore"];
+        $libro["prezzoSconto"] = $row["prezzoSconto"];
+
         $risposta[] = $libro;
     }
 

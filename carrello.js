@@ -1,9 +1,9 @@
 function onJsonLeggiCarrello(json) {
     const carrello = document.querySelector('#carrello');
-    
+    carrello.innerHTML = '<h2>Il mio carrello</h2>';
 
     if (json.length === 0) {
-        contenitore.textContent = "Il tuo carrello è vuoto. Aggiungi qualche libro!";
+        carrello.textContent = "Il tuo carrello è vuoto. Aggiungi qualche libro!";
         return;
     }
 
@@ -26,10 +26,25 @@ function onJsonLeggiCarrello(json) {
         const titolo_libro=document.createElement('div');
         titolo_libro.classList.add('titolo');
         titolo_libro.textContent=libroData.titolo;
+        
+        const autore_libro=document.createElement('div');
+        autore_libro.classList.add('autore');
+        autore_libro.textContent=libroData.autore;
+
+        const div_prezzo=document.createElement('div');
+        div_prezzo.classList.add('divPrezzo');
 
         const prezzo_libro=document.createElement('div');
         prezzo_libro.classList.add('prezzo');
         prezzo_libro.textContent=libroData.prezzo;
+
+        const prezzosconto_libro=document.createElement('div');
+        prezzosconto_libro.classList.add('sconto');
+        prezzosconto_libro.textContent=libroData.prezzoSconto;
+
+        const disponibile=document.createElement('div');
+        disponibile.classList.add('disponibilita');
+        disponibile.textContent="Disponibilità immediata";
 
         carrello.appendChild(article);
 
@@ -39,7 +54,12 @@ function onJsonLeggiCarrello(json) {
         contenitore.appendChild(immagine);
 
         descrizione.appendChild(titolo_libro);
-        descrizione.appendChild(prezzo_libro);
+        descrizione.appendChild(autore_libro);
+        descrizione.appendChild(div_prezzo);
+        descrizione.appendChild(disponibile);
+
+        div_prezzo.appendChild(prezzo_libro);
+        div_prezzo.appendChild(prezzosconto_libro);
     }
         
 }

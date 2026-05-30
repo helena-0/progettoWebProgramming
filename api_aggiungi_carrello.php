@@ -15,7 +15,7 @@
     }
 
     // 2. Controllo di aver ricevuto i dati del libro da JavaScript
-    if (isset($_POST["titolo"]) && isset($_POST["copertina"]) && isset($_POST["prezzo"])) {
+    if (isset($_POST["titolo"]) && isset($_POST["copertina"]) && isset($_POST["prezzo"])&& isset($_POST["autore"])&& isset($_POST["prezzoSconto"])) {
 
         $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);
     
@@ -23,6 +23,8 @@
         $titolo = mysqli_real_escape_string($conn, $_POST["titolo"]);
         $copertina = mysqli_real_escape_string($conn, $_POST["copertina"]);
         $prezzo = mysqli_real_escape_string($conn, $_POST["prezzo"]);
+        $autore = mysqli_real_escape_string($conn, $_POST["autore"]);
+        $prezzoSconto = mysqli_real_escape_string($conn, $_POST["prezzoSconto"]);
 
         $query_cerca = "SELECT * FROM carrello WHERE user_id = '$userid' AND titolo = '$titolo'";
         $res_cerca = mysqli_query($conn, $query_cerca);
@@ -37,7 +39,7 @@
             
         } else {
            
-            $query_inserisci = "INSERT INTO carrello(user_id, titolo, copertina, prezzo) VALUES ('$userid', '$titolo', '$copertina', '$prezzo')";
+            $query_inserisci = "INSERT INTO carrello(user_id, titolo, copertina, prezzo, autore, prezzoSconto) VALUES ('$userid', '$titolo', '$copertina', '$prezzo', '$autore', '$prezzoSconto')";
             mysqli_query($conn, $query_inserisci);
             
             $risposta["success"] = true;

@@ -1,3 +1,23 @@
+<?php
+    require_once 'auth.php';
+    $userid = checkAuth();
+    if (!$userid) {
+        header("Location: index.php");
+        exit;
+    }
+
+    require_once 'dbconfig.php';
+    $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);
+
+    $query = "SELECT nome, cognome, email FROM utenti WHERE id = '$userid'";
+    $res = mysqli_query($conn, $query);
+
+    $user_data = mysqli_fetch_assoc($res);
+    
+    mysqli_close($conn);
+
+?>
+
 <!DOCTYPE html> 
 <html>
     <head>
@@ -48,9 +68,12 @@
 
                 <div class="icone">
                     <img src="immagini/favorite.png" class="logo" id="preferiti">
-                    <img src="immagini/cart.png" class="logo" >        
-                    <img src="immagini/person_log.png" class="logo">
-                            
+                    <img src="immagini/cart.png" class="logo" >    
+                    <?php if ($userid==true){?> 
+                        <a href="account.php">  
+                            <img src="immagini/person_log.png" class="logo">
+                        </a>
+                      <?php }?>    
                 </div>
 
                 <div id="pannello-preferiti" class="hidden">

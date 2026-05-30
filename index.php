@@ -372,6 +372,8 @@
                                     data-copertina="immagini/libronov1.jpg"
                                     data-titolo="La gioia è un duro lavoro"
                                     data-prezzo="15,20€"
+                                    data-autore="Gio Evan"
+                                    data-prezzo-sconto="16,00"
                                     >
                                     <img src="immagini/cart.png">
                                 </div>
@@ -409,6 +411,8 @@
                                     data-copertina="immagini/libronov2.jpg"
                                     data-titolo="Funny story. Un amore per finta"
                                     data-prezzo="17,00€"
+                                    data-autore="Emily Henry"
+                                    data-prezzo-sconto="17,90"
                                 >
                                     <img src="immagini/cart.png">
                                 </div>
@@ -446,6 +450,8 @@
                                     data-copertina="immagini/libronov3.jpg"
                                     data-titolo="Vento e verità"
                                     data-prezzo="33,25€"
+                                    data-autore="Brandon Sanderson"
+                                    data-prezzo-sconto="35,00"
                                 >
                                     <img src="immagini/cart.png">
                                 </div>
@@ -483,6 +489,8 @@
                                     data-copertina="immagini/libro2.jpg"
                                     data-titolo="Saggio sulla lucidità"
                                     data-prezzo="12,35€"
+                                    data-autore="José Saramago"
+                                    data-prezzo-sconto="13,00"
                                 >
                                     <img src="immagini/cart.png">
                                 </div>
@@ -520,6 +528,8 @@
                                     data-copertina="immagini/libronov5.jpg"
                                     data-titolo="Heated Rivarly"
                                     data-prezzo="17,00€"
+                                    data-autore="Rachel Reid"
+                                    data-prezzo-sconto="17,90"
                                 >
                                     <img src="immagini/cart.png">
                                 </div>

@@ -26,6 +26,7 @@
         <title>Account</title>
         <link rel="stylesheet" href="account.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="account.js" defer></script>
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,7 +71,11 @@
 
                 <div class="icone">
                     <img src="immagini/favorite.png" class="logo" id="preferiti">
-                    <img src="immagini/cart.png" class="logo" >        
+                    <?php if ($userid==true){?> 
+                        <a href="carrello.php">  
+                            <img src="immagini/cart.png" class="logo">
+                        </a>
+                      <?php }?>
                     <img src="immagini/person_log.png" class="logo">
                             
                 </div>
@@ -315,7 +320,12 @@
                         </div>
                     </div>
                 </section>
-
+                <section id="elimina">
+                    <div>
+                        <span>Vuoi cancellare il tuo account?</span>
+                        <button id="bottone_elimina">Procedi</button>
+                    </div>
+                </section>
             </div>
 
         </div>
@@ -620,5 +630,19 @@
                 </div>
             </div>
         </footer>
+
+        <section id="modal-view" class="hidden">
+            <section id="boxElimina">
+                    <span>
+                        Sei sicuro di voler eliminare l'account?
+                    </span>
+                    <div>
+                        <button id="bottone_conferma">Elimina</button>
+                        <a href="#">Annulla</a>
+                    </div>
+            </section>
+        </section>
+
+
     </body>
 </html>
