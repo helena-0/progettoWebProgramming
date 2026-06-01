@@ -106,7 +106,6 @@ for(let i=0; i<bottoni_novità.length; i++){
 }
 
 // --- RIPRISTINO COLORE CARRELLO AL CARICAMENTO ---
-
 function onJsonRipristinaCarrello(json) {
     for (let i = 0; i < json.length; i++) {
         const titoloLibroSalvato = json[i].titolo;
@@ -301,7 +300,7 @@ function search(event) {
 
     console.log('Eseguo ricerca: ' + author_value);
     
-    const rest_url = 'http://openlibrary.org/search.json?q=' + author_value;
+    const rest_url = 'api_openlibrary.php?q=' + author_value;
     console.log('URL: ' + rest_url);
     
     fetch(rest_url).then(onResponse).then(onJson);
@@ -359,10 +358,8 @@ function onJsonRanking(json) {
 }
 
 function aggiornaClassificaFilm() {
-    const API_KEY = 'cb216e086c72157de88a76d71631e973';
-    const url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=' + API_KEY + '&language=it-IT&region=IT';
     
-    fetch(url).then(onResponseRanking).then(onJsonRanking);
+    fetch('api_film.php').then(onResponseRanking).then(onJsonRanking);
 }
 aggiornaClassificaFilm();
 
@@ -418,8 +415,8 @@ function cercaFilmTramiteForm(event) {
         contenitoreRisultato.innerHTML = '';
         return;
     }
-    const API_KEY = 'cb216e086c72157de88a76d71631e973';
-    const url = 'https://api.themoviedb.org/3/search/movie?api_key=' + API_KEY + '&language=it-IT&query=' + testoCercato;
+    
+    const url = 'api_film.php?q=' + testoCercato;
     fetch(url).then(onResponseRicerca).then(onJsonRicerca);
 }
 
