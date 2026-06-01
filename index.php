@@ -373,13 +373,7 @@
                                     >                                
                                     <img src="immagini/favorite.png">
                                 </div>
-                                <div class="pulsante-freccia destra"
-                                    data-copertina="immagini/libronov1.jpg"
-                                    data-titolo="La gioia è un duro lavoro"
-                                    data-prezzo="15,20€"
-                                    data-autore="Gio Evan"
-                                    data-prezzo-sconto="16,00"
-                                    >
+                                <div class="pulsante-freccia destra" data-id-libro="1">
                                     <img src="immagini/cart.png">
                                 </div>
                             <?php } ?>
@@ -412,13 +406,7 @@
                                 >
                                     <img src="immagini/favorite.png">
                                 </div>
-                                <div class="pulsante-freccia destra"
-                                    data-copertina="immagini/libronov2.jpg"
-                                    data-titolo="Funny story. Un amore per finta"
-                                    data-prezzo="17,00€"
-                                    data-autore="Emily Henry"
-                                    data-prezzo-sconto="17,90"
-                                >
+                                <div class="pulsante-freccia destra" data-id-libro="2">
                                     <img src="immagini/cart.png">
                                 </div>
                             <?php } ?>
@@ -451,13 +439,7 @@
                                 >
                                     <img src="immagini/favorite.png">
                                 </div>
-                                <div class="pulsante-freccia destra"
-                                    data-copertina="immagini/libronov3.jpg"
-                                    data-titolo="Vento e verità"
-                                    data-prezzo="33,25€"
-                                    data-autore="Brandon Sanderson"
-                                    data-prezzo-sconto="35,00"
-                                >
+                                <div class="pulsante-freccia destra" data-id-libro="3">
                                     <img src="immagini/cart.png">
                                 </div>
                             <?php } ?>
@@ -490,13 +472,7 @@
                                 >
                                     <img src="immagini/favorite.png">
                                 </div>
-                                <div class="pulsante-freccia destra"
-                                    data-copertina="immagini/libro2.jpg"
-                                    data-titolo="Saggio sulla lucidità"
-                                    data-prezzo="12,35€"
-                                    data-autore="José Saramago"
-                                    data-prezzo-sconto="13,00"
-                                >
+                                <div class="pulsante-freccia destra" data-id-libro="4">
                                     <img src="immagini/cart.png">
                                 </div>
                             <?php } ?>
@@ -529,13 +505,7 @@
                                 >
                                     <img src="immagini/favorite.png">
                                 </div>
-                                <div class="pulsante-freccia destra"
-                                    data-copertina="immagini/libronov5.jpg"
-                                    data-titolo="Heated Rivarly"
-                                    data-prezzo="17,00€"
-                                    data-autore="Rachel Reid"
-                                    data-prezzo-sconto="17,90"
-                                >
+                                <div class="pulsante-freccia destra" data-id-libro="5">
                                     <img src="immagini/cart.png">
                                 </div>
                             <?php } ?>

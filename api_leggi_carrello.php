@@ -13,25 +13,27 @@
     $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);
     $userid = $_SESSION["user_id"];
 
-    $query = "SELECT * FROM carrello WHERE user_id = '$userid'";
+    $query = "SELECT carrello.libro_id, libri.isbn, libri.prezzo, libri.prezzo_sconto 
+            FROM carrello 
+            JOIN libri ON carrello.libro_id = libri.id 
+            WHERE carrello.user_id = '$userid'";
+
     $res = mysqli_query($conn, $query);
+    $libri_nel_carrello = array();
 
-    while ($row = mysqli_fetch_assoc($res)) {
-
+    while($row = mysqli_fetch_assoc($res)) {
         $libro = array();
-        $libro["id"] = $row["id"];
-        $libro["titolo"] = $row["titolo"];
-        $libro["copertina"] = $row["copertina"];
+        $libro["libro_id"] = $row["libro_id"]; 
+        $libro["isbn"] = $row["isbn"];         
         $libro["prezzo"] = $row["prezzo"];
-        $libro["autore"] = $row["autore"];
-        $libro["prezzoSconto"] = $row["prezzoSconto"];
+        $libro["prezzoSconto"] = $row["prezzo_sconto"];
 
-        $risposta[] = $libro;
+        $libri_nel_carrello[] = $libro;
     }
 
     mysqli_free_result($res);
     mysqli_close($conn);
 
-    echo json_encode($risposta);
+    echo json_encode($libri_nel_carrello);
     exit;
 ?>

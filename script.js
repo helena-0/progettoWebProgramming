@@ -108,8 +108,8 @@ for(let i=0; i<bottoni_novità.length; i++){
 // --- RIPRISTINO COLORE CARRELLO AL CARICAMENTO ---
 function onJsonRipristinaCarrello(json) {
     for (let i = 0; i < json.length; i++) {
-        const titoloLibroSalvato = json[i].titolo;
-        const bottone = document.querySelector('.pulsante-freccia.destra[data-titolo="' + titoloLibroSalvato + '"]');
+        const idLibroSalvato = json[i].libro_id;
+        const bottone = document.querySelector('.pulsante-freccia.destra[data-id-libro="' + idLibroSalvato + '"]');
 
         if (bottone) {
             bottone.classList.add('bottone-rosso');
@@ -138,35 +138,23 @@ function onResponseCarrello(response) {
 }
 
 function aggiungiAlCarrello(event) {
-    const bottone = event.currentTarget; 
+    const bottone = event.currentTarget;
+    const idLibro = bottone.dataset.idLibro; 
+    const dati_carrello = new FormData();
 
     if (bottone.classList.contains('bottone-rosso')) {
         bottone.classList.remove('bottone-rosso');
     } else {
-        bottone.classList.add('bottone-rosso');
-    }
+        bottone.classList.add('bottone-rosso')
+    }    
 
-    // Prendo i dati 
-    const copertinaLibro = bottone.dataset.copertina;
-    const nomeLibro = bottone.dataset.titolo;
-    const prezzoLibro = bottone.dataset.prezzo;
-    const autoreLibro = bottone.dataset.autore;
-    const prezzoScontoLibro = bottone.dataset.prezzoSconto;
+    dati_carrello.append('id_libro', idLibro);
 
-    // Prepara il pacco da spedire
-    const dati_carrello = new FormData();
-    dati_carrello.append('titolo', nomeLibro);
-    dati_carrello.append('copertina', copertinaLibro);
-    dati_carrello.append('prezzo', prezzoLibro);
-    dati_carrello.append('autore', autoreLibro);
-    dati_carrello.append('prezzoSconto', prezzoScontoLibro);
-
-    // Manda i dati al PHP del carrello (FETCH)
     const opzioni = { method: 'post', body: dati_carrello };
     fetch('api_aggiungi_carrello.php', opzioni).then(onResponseCarrello).then(onJsonCarrello);
 }
 
-// Questo attacca la nuova funzione SOLO ai carrellini!
+
 const bottoni_carrello = document.querySelectorAll('.libro .pulsante-freccia.destra');
 for(let i = 0; i < bottoni_carrello.length; i++) {
     bottoni_carrello[i].addEventListener('click', aggiungiAlCarrello);
@@ -415,7 +403,7 @@ function cercaFilmTramiteForm(event) {
         contenitoreRisultato.innerHTML = '';
         return;
     }
-    
+
     const url = 'api_film.php?q=' + testoCercato;
     fetch(url).then(onResponseRicerca).then(onJsonRicerca);
 }
