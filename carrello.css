@@ -480,11 +480,31 @@ h3{
     font-weight: 530;
 }
 
-
 .articolo_libro{
     display: flex;
     padding: 20px;
     border-bottom: 1px solid #d2d2d2;
+}
+
+.contenitore_descrizione{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.bottoneElimina{
+    height: 40px;
+    width: 15%;
+    margin-top: 50px;
+
+    background-color: #263238;
+    color: white;
+}
+
+.bottoneElimina:hover{
+    cursor: pointer;
+    background-color: white;
+    color: #263238;
 }
 
 .contenitore_immagine{

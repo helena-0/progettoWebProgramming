@@ -36,14 +36,13 @@ function OnClickSX(){
     Immagine.src=FotoSrc;
 
 }
-
-
 const scorrisx_banner=document.querySelector('#banner .sinistra');
 scorrisx_banner.addEventListener('click', OnClickSX);
 
 const scorridx_banner=document.querySelector('#banner .destra');
 scorridx_banner.addEventListener('click', OnClickDX);
 
+//-------------------------------------------------------------------------------------
 
 function BottoneRosso(event){
     const bottone= event.currentTarget; 
@@ -105,7 +104,8 @@ for(let i=0; i<bottoni_novità.length; i++){
         bottoni_novità[i].addEventListener('click', BottoneRosso);
 }
 
-// --- RIPRISTINO COLORE CARRELLO AL CARICAMENTO ---
+// ------------------------------------------------------------------------------------------
+
 function onJsonRipristinaCarrello(json) {
     for (let i = 0; i < json.length; i++) {
         const idLibroSalvato = json[i].libro_id;
@@ -117,13 +117,14 @@ function onJsonRipristinaCarrello(json) {
     }
 }
 
+
 function onResponseRipristinaCarrello(response) {
     return response.json();
 }
 
 fetch('api_leggi_carrello.php').then(onResponseRipristinaCarrello).then(onJsonRipristinaCarrello);
 
-// --- NUOVA PARTE PER IL CARRELLO ---
+// ----------------------------------------------------------------------------------------------
 
 function onJsonCarrello(json) {
     if (json.success === true) {
@@ -161,6 +162,9 @@ for(let i = 0; i < bottoni_carrello.length; i++) {
 }
 
 
+//-----------------------------------------------------------------------------------------
+
+
 function loggin(){
     const vistaModale=document.querySelector('#modal-view');
     document.body.classList.add('no-scroll');
@@ -181,7 +185,7 @@ function chiudereModale(){
 const immagineX=document.querySelector('#modal-view .logo');
 immagineX.addEventListener('click',chiudereModale);
 
-//ACCESSO
+
 function onJsonLogin(json) {
     if (json.success === true) {
         window.location.reload();
@@ -215,6 +219,9 @@ if (formLogin) {
     formLogin.addEventListener('submit', eseguiLogin);
 }
 
+//-------------------------------------------------------------------------------------------
+
+
 function visualizzaPreferiti(){
     const pulsante=document.querySelector('#pannello-preferiti');
     if(pulsante.classList.contains('hidden'))
@@ -226,6 +233,7 @@ function visualizzaPreferiti(){
 const pulsantePreferiti=document.querySelector('#preferiti')
 pulsantePreferiti.addEventListener('click',visualizzaPreferiti)
 
+//--------------------------------------------------------------------------------------------------------
 
 function onResponse(response) {
     if(response.ok) {
@@ -234,6 +242,7 @@ function onResponse(response) {
         return null;
     }
 }
+
 
 function onJson(json) {
     console.log('JSON ricevuto');

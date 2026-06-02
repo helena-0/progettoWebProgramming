@@ -1,10 +1,9 @@
-// 1. Questa funzione riceve i dati dal TUO database (solo ISBN e Prezzi)
 function onJsonLeggiCarrello(json) {
     const carrello = document.querySelector('#carrello');
     carrello.innerHTML = '<h2>Il mio carrello</h2>';
 
     if (json.length === 0) {
-        carrello.textContent = "Il tuo carrello è vuoto. Aggiungi qualche libro!";
+        aggiornaStatoCarrello();
         return;
     }
 
@@ -17,25 +16,38 @@ function onJsonLeggiCarrello(json) {
             })
             .then(function(openLibraryJson) {
                 const bookData = openLibraryJson['ISBN:' + libroDB.isbn];
-                
-                if (bookData) {
-                    // SE L'API FUNZIONA: Disegna tutto normalmente
-                    creaSchedaLibro(bookData, libroDB.prezzo, libroDB.prezzoSconto);
-                } else {
-                    // PIANO B: SE L'API FALLISCE, CREIAMO DEI DATI PROVVISORI PER NON BLOCCARE IL CARRELLO!
-                    const datiDiScorta = {
-                        title: "Libro in elaborazione (ISBN: " + libroDB.isbn + ")",
-                        authors: [{name: "Autore da verificare"}],
-                        cover: null // Senza copertina, userà quella "mancante"
-                    };
-                    creaSchedaLibro(datiDiScorta, libroDB.prezzo, libroDB.prezzoSconto);
-                }
+                creaSchedaLibro(bookData, libroDB.prezzo, libroDB.prezzoSconto, libroDB.libro_id);               
             });
     }
 }
 
+function rimuoviDalCarrello(event) {
+    const bottone = event.currentTarget;
+    const idLibro = bottone.dataset.idLibro; 
+    
+    const dati_carrello = new FormData();
+    dati_carrello.append('id_libro', idLibro);
 
-function creaSchedaLibro(bookData, prezzoDB, prezzoScontoDB) {
+    fetch('api_aggiungi_carrello.php', { method: 'post', body: dati_carrello })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(json) {
+            if(json.success) {
+
+                const divContenitoreDescrizione = bottone.parentNode;
+                const articolo = divContenitoreDescrizione.parentNode;
+                
+                setTimeout(function() {
+                    articolo.remove();
+                    aggiornaStatoCarrello();
+                }, 500);
+            }
+        });
+}
+
+
+function creaSchedaLibro(bookData, prezzoDB, prezzoScontoDB, idLibro) {
     const carrello = document.querySelector('#carrello');
 
     const article = document.createElement('article');
@@ -44,17 +56,14 @@ function creaSchedaLibro(bookData, prezzoDB, prezzoScontoDB) {
     const contenitore = document.createElement('div');
     contenitore.classList.add('contenitore_immagine');
 
-    const immagine = document.createElement('img');
-    // Prendo la copertina da Open Library (se non c'è, ne metto una finta di scorta)
-    if (bookData.cover) {
-        immagine.src = bookData.cover.medium;
-    } else {
-        // Assicurati di avere un'immagine di scorta in questa cartella, oppure lascia vuoto!
-        immagine.src = "immagini/copertina_mancante.jpg"; 
-    }
+    const immagine = document.createElement('img')
+    immagine.src = bookData.cover.medium; 
+
+    const contenitore_descrizione = document.createElement('div');
+    contenitore_descrizione.classList.add('contenitore_descrizione');
 
     const descrizione = document.createElement('div');
-    descrizione.classList.add('descrizione');
+    descrizione.classList.add('descrizione'); 
 
     const titolo_libro = document.createElement('div');
     titolo_libro.classList.add('titolo');
@@ -83,11 +92,19 @@ function creaSchedaLibro(bookData, prezzoDB, prezzoScontoDB) {
     disponibile.classList.add('disponibilita');
     disponibile.textContent = "Disponibilità immediata";
 
+    const bottone_elimina=document.createElement('button');
+    bottone_elimina.textContent="Rimuovi";
+    bottone_elimina.classList.add('bottoneElimina');
+    bottone_elimina.dataset.idLibro = idLibro;
+    bottone_elimina.addEventListener('click', rimuoviDalCarrello);
+
     carrello.appendChild(article);
 
     article.appendChild(contenitore);
-    article.appendChild(descrizione);
+    article.appendChild(contenitore_descrizione);
 
+    contenitore_descrizione.appendChild(descrizione);
+    contenitore_descrizione.appendChild(bottone_elimina);
     contenitore.appendChild(immagine);
 
     descrizione.appendChild(titolo_libro);
@@ -112,3 +129,12 @@ function caricaCarrelloAsincrono() {
 }
 
 caricaCarrelloAsincrono();
+
+function aggiornaStatoCarrello() {
+    const carrello = document.querySelector('#carrello');
+    const numeroLibri = carrello.querySelectorAll('.articolo_libro').length;
+
+    if (numeroLibri === 0) {
+        carrello.innerHTML = '<h2>Il mio carrello</h2>Il tuo carrello è vuoto. Aggiungi qualche libro!';
+    }
+}

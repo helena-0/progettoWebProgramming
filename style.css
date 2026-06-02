@@ -1402,9 +1402,6 @@ header{
 }
 
 #boxAccesso button:hover{
-    height: 40px;
-    width: 100%;
-
     color: #263238;
     background-color: white;
 }

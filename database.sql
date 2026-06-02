@@ -9,10 +9,6 @@ CREATE TABLE utenti (
     password VARCHAR(255) NOT NULL
 );
 
-DROP TABLE carrello;
-DROP TABLE libri;
-
--- Tabella del tuo catalogo
 CREATE TABLE libri (
     id INT AUTO_INCREMENT PRIMARY KEY,
     isbn VARCHAR(50) NOT NULL,
@@ -28,9 +24,11 @@ INSERT INTO libri (isbn, prezzo, prezzo_sconto) VALUES
 ('9791255172208', '17,00€', '17,90€');
 
 
--- Tabella del carrello
 CREATE TABLE carrello (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     libro_id INT NOT NULL
 );
+
+DROP TABLE carrello;
+DROP TABLE libri;

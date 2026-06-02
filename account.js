@@ -14,11 +14,12 @@ function eliminaAccount(event) {
     fetch('api_elimina_account.php').then(onResponseEliminaAccount).then(onJsonEliminaAccount);
 }
 
-// Attacco la funzione al bottone (se esiste nella pagina)
 const btnEliminaAccount = document.querySelector('#bottone_conferma');
 if (btnEliminaAccount) {
     btnEliminaAccount.addEventListener('click', eliminaAccount);
 }
+
+//----------------------------------------------------------------------------------------------------
 
 function modale(){
     const vistaModale=document.querySelector('#modal-view');
