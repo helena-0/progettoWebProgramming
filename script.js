@@ -103,28 +103,139 @@ const bottoni_novità=document.querySelectorAll('.libro .pulsante-freccia.sinist
 for(let i=0; i<bottoni_novità.length; i++){
         bottoni_novità[i].addEventListener('click', BottoneRosso);
 }
-
 // ------------------------------------------------------------------------------------------
 
-function onJsonRipristinaCarrello(json) {
-    for (let i = 0; i < json.length; i++) {
-        const idLibroSalvato = json[i].libro_id;
-        const bottone = document.querySelector('.pulsante-freccia.destra[data-id-libro="' + idLibroSalvato + '"]');
 
-        if (bottone) {
-            bottone.classList.add('bottone-rosso');
-        }
+
+function inizializzaHome() {
+    const contenitoreHome = document.querySelector('#sezione-libri-dinamici');
+    if (contenitoreHome) {
+        fetch('api_libri.php')
+            .then(function(response) { return response.json(); })
+            .then(onJsonCaricaCatalogo);
     }
 }
 
+function onJsonCaricaCatalogo(json) {
+    const contenitoreHome = document.querySelector('#sezione-libri-dinamici');
+    contenitoreHome.innerHTML = ''; 
 
-function onResponseRipristinaCarrello(response) {
-    return response.json();
+    const utenteLoggato = (document.querySelector('#loggin') === null);
+
+    let maxLibri = json.length;
+    if (maxLibri > 5) maxLibri = 5;
+
+    for (let i = 0; i < maxLibri; i++) {
+        const libro = json[i];
+        const article = document.createElement('article');
+        article.classList.add('libro');
+        
+        if (i === 2) article.id = 'tre';
+        if (i === 3) article.id = 'due';
+        if (i === 4) article.id = 'uno';
+
+        const contenitoreImmagine = document.createElement('div');
+        contenitoreImmagine.classList.add('contenitore-immagine');
+
+        const immagine = document.createElement('img');
+        immagine.classList.add('copertina');
+        immagine.src = libro.copertina;
+        contenitoreImmagine.appendChild(immagine);
+        
+        const divInternoBottoni = document.createElement('div');
+
+        if (utenteLoggato) {
+            const btnPreferiti = document.createElement('div');
+            btnPreferiti.classList.add('pulsante-freccia', 'sinistra');
+            btnPreferiti.dataset.copertina = libro.copertina;
+            btnPreferiti.dataset.titolo = libro.titolo;
+            btnPreferiti.dataset.prezzo = libro.prezzo;
+            
+            const imgCuore = document.createElement('img');
+            imgCuore.src = 'immagini/favorite.png';
+            btnPreferiti.appendChild(imgCuore);
+            btnPreferiti.addEventListener('click', BottoneRosso); 
+            
+            const btnCarrello = document.createElement('div');
+            btnCarrello.classList.add('pulsante-freccia', 'destra'); 
+            btnCarrello.dataset.idLibro = libro.id; 
+            
+            const imgCarrello = document.createElement('img');
+            imgCarrello.src = 'immagini/cart.png';
+            btnCarrello.appendChild(imgCarrello);
+            btnCarrello.addEventListener('click', aggiungiAlCarrello); 
+
+            divInternoBottoni.appendChild(btnPreferiti);
+            divInternoBottoni.appendChild(btnCarrello);
+        }
+        contenitoreImmagine.appendChild(divInternoBottoni);
+
+        const libroDescrizione = document.createElement('div');
+        libroDescrizione.classList.add('libro-descrizione');
+
+        const divTitoloAutore = document.createElement('div');
+        
+        const titolo = document.createElement('div');
+        titolo.classList.add('titolo');
+        const spanTitolo = document.createElement('span');
+        spanTitolo.textContent = libro.titolo;
+        titolo.appendChild(spanTitolo);
+
+        const sottotitolo = document.createElement('div');
+        sottotitolo.classList.add('sottotitolo');
+        sottotitolo.innerHTML = 'di <span>' + libro.autore + '</span>'; //CONTROLLARE
+
+        divTitoloAutore.appendChild(titolo);
+        divTitoloAutore.appendChild(sottotitolo);
+
+        const divStelle = document.createElement('div');
+        divStelle.classList.add('stelle');
+        const imgStelle = document.createElement('img');
+        imgStelle.src = 'immagini/cinque-stelle-grigio.png';
+        divStelle.appendChild(imgStelle);
+
+        const divPrezzo = document.createElement('div');
+        divPrezzo.classList.add('prezzo');
+        
+        const spanSconto = document.createElement('span');
+        spanSconto.classList.add('sconto');
+        spanSconto.textContent = libro.prezzo;
+
+        const spanPrezzoPieno = document.createElement('span');
+        spanPrezzoPieno.classList.add('prezzo-pieno');
+        spanPrezzoPieno.textContent = libro.prezzo_sconto;
+
+        divPrezzo.appendChild(spanSconto);
+        divPrezzo.appendChild(spanPrezzoPieno);
+
+        libroDescrizione.appendChild(divTitoloAutore);
+        libroDescrizione.appendChild(divStelle);
+        libroDescrizione.appendChild(divPrezzo);
+
+        article.appendChild(contenitoreImmagine);
+        article.appendChild(libroDescrizione);
+        contenitoreHome.appendChild(article);
+    }
+
+    if (utenteLoggato) {
+        ripristinaStatoCarrelloHome();
+    }
 }
+// ------------------------------------------------------------------------------------------
 
-fetch('api_leggi_carrello.php').then(onResponseRipristinaCarrello).then(onJsonRipristinaCarrello);
-
-// ----------------------------------------------------------------------------------------------
+function ripristinaStatoCarrelloHome() {
+    fetch('api_leggi_carrello.php')
+        .then(function(response) { return response.json(); })
+        .then(function(json) {
+            for (let i = 0; i < json.length; i++) {
+                const idLibroSalvato = json[i].libro_id;
+                const bottone = document.querySelector('.pulsante-freccia.destra[data-id-libro="' + idLibroSalvato + '"]');
+                if (bottone) {
+                    bottone.classList.add('bottone-rosso');
+                }
+            }
+        });
+}
 
 function onJsonCarrello(json) {
     if (json.success === true) {
@@ -140,29 +251,31 @@ function onResponseCarrello(response) {
 
 function aggiungiAlCarrello(event) {
     const bottone = event.currentTarget;
-    const idLibro = bottone.dataset.idLibro; 
     const dati_carrello = new FormData();
 
     if (bottone.classList.contains('bottone-rosso')) {
         bottone.classList.remove('bottone-rosso');
     } else {
-        bottone.classList.add('bottone-rosso')
+        bottone.classList.add('bottone-rosso');
     }    
 
-    dati_carrello.append('id_libro', idLibro);
+    if (bottone.dataset.idLibro) {
+        dati_carrello.append('id_libro', bottone.dataset.idLibro);
+    } else if (bottone.dataset.titolo) {
+        dati_carrello.append('titolo', bottone.dataset.titolo); //CONTROLLARE
+        dati_carrello.append('autore', bottone.dataset.autore);
+        dati_carrello.append('copertina', bottone.dataset.copertina);
+        dati_carrello.append('prezzo', bottone.dataset.prezzo);
+        dati_carrello.append('prezzo_sconto', bottone.dataset.prezzoSconto);
+    }
 
     const opzioni = { method: 'post', body: dati_carrello };
     fetch('api_aggiungi_carrello.php', opzioni).then(onResponseCarrello).then(onJsonCarrello);
 }
 
+inizializzaHome();
 
-const bottoni_carrello = document.querySelectorAll('.libro .pulsante-freccia.destra');
-for(let i = 0; i < bottoni_carrello.length; i++) {
-    bottoni_carrello[i].addEventListener('click', aggiungiAlCarrello);
-}
-
-
-//-----------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------
 
 
 function loggin(){
@@ -233,35 +346,51 @@ function visualizzaPreferiti(){
 const pulsantePreferiti=document.querySelector('#preferiti')
 pulsantePreferiti.addEventListener('click',visualizzaPreferiti)
 
+
 //--------------------------------------------------------------------------------------------------------
 
-function onResponse(response) {
-    if(response.ok) {
+
+function onResponseRicercaDB(response) {
+    if (response.ok) {
         return response.json();
     } else {
         return null;
     }
 }
 
-
 function onJson(json) {
-    console.log('JSON ricevuto');
-    
     const containerRisultati = document.querySelector('#risultati-ricerca');
     containerRisultati.classList.remove('hidden');
 
     const library = document.querySelector('#sezione-ricerca');
     library.innerHTML = '';
     
+    const utenteLoggato = (document.querySelector('#loggin') === null);
+
     let num_results = json.num_found;
-    if (num_results > 6) {
-        num_results = 6;
+    if (num_results === 0) {
+        library.innerHTML = '<div style="padding: 20px; font-weight: 500;">Nessun libro trovato su Open Library.</div>';
+        return;
     }
 
-    for(let i=0; i<num_results; i++) {
+    if (num_results > 6) num_results = 6;
+
+    for (let i = 0; i < num_results; i++) {
         const doc = json.docs[i]
         const title = doc.title;
-        const cover_url = 'http://covers.openlibrary.org/b/id/' + doc.cover_i + '-M.jpg';
+        
+        let autore = "Autore sconosciuto";
+        if (doc.author_name && doc.author_name.length > 0) {
+            autore = doc.author_name[0];
+        }
+
+        let cover_url = 'immagini/copertina_mancante.jpg'; 
+        if (doc.cover_i) {
+            cover_url = 'https://covers.openlibrary.org/b/id/' + doc.cover_i + '-M.jpg';
+        }
+
+        const prezzoFittizio = "15,00€";
+        const prezzoScontoFittizio = "16,50€";
         
         const book = document.createElement('div');
         book.classList.add('libro-ricerca');
@@ -269,21 +398,72 @@ function onJson(json) {
         const img = document.createElement('img');
         img.src = cover_url;
         
-        const caption = document.createElement('span');
-        caption.textContent = title;
+        const infoDiv = document.createElement('div');
+        infoDiv.classList.add('info-ricerca');
+
+        const caption = document.createElement('div');
+        caption.innerHTML = '<strong>' + title + '</strong><br>di ' + autore;
+        caption.classList.add('descrizione-ricerca');
+        infoDiv.appendChild(caption);
+
+        if (utenteLoggato) {
+            const divBottoni = document.createElement('div');
+            divBottoni.classList.add('bottoni-ricerca');
+
+            const btnPreferiti = document.createElement('div');
+            btnPreferiti.classList.add('pulsante-freccia'); 
+            btnPreferiti.dataset.copertina = cover_url;
+            btnPreferiti.dataset.titolo = title;
+            btnPreferiti.dataset.prezzo = prezzoFittizio;
+            const imgCuore = document.createElement('img');
+            imgCuore.src = 'immagini/favorite.png';
+            btnPreferiti.appendChild(imgCuore);
+            btnPreferiti.addEventListener('click', BottoneRosso);
+
+            const btnCarrello = document.createElement('div');
+            btnCarrello.classList.add('pulsante-freccia', 'destra-ricerca'); 
+            
+            btnCarrello.dataset.titolo = title;
+            btnCarrello.dataset.autore = autore;
+            btnCarrello.dataset.copertina = cover_url;
+            btnCarrello.dataset.prezzo = prezzoFittizio;
+            btnCarrello.dataset.prezzoSconto = prezzoScontoFittizio;
+            
+            const imgCarrello = document.createElement('img');
+            imgCarrello.src = 'immagini/cart.png';
+            btnCarrello.appendChild(imgCarrello);
+            btnCarrello.addEventListener('click', aggiungiAlCarrello);
+
+            divBottoni.appendChild(btnPreferiti);
+            divBottoni.appendChild(btnCarrello);
+            infoDiv.appendChild(divBottoni);
+        }
         
         book.appendChild(img);
-        book.appendChild(caption);
-        caption.classList.add('descrizione-ricerca')
+        book.appendChild(infoDiv);
         library.appendChild(book);
+    }
+
+    if (utenteLoggato) {
+        fetch('api_leggi_carrello.php')
+            .then(function(res) { return res.json(); })
+            .then(function(carrelloJson) {
+                const bottoniRicerca = document.querySelectorAll('#sezione-ricerca .destra-ricerca');
+                for (let b = 0; b < bottoniRicerca.length; b++) {
+                    const btn = bottoniRicerca[b];
+                    const titoloBtn = btn.dataset.titolo;
+                    for (let c = 0; c < carrelloJson.length; c++) {
+                        if (carrelloJson[c].titolo === titoloBtn) {
+                            btn.classList.add('bottone-rosso');
+                        }
+                    }
+                }
+            });
     }
 }
 
-
 function search(event) {
-
     event.preventDefault();
-    
     const author_input = document.querySelector('.barra-ricerca input');
     const author_value = encodeURIComponent(author_input.value);
 
@@ -295,17 +475,14 @@ function search(event) {
         return; 
     }
 
-    console.log('Eseguo ricerca: ' + author_value);
-    
     const rest_url = 'api_openlibrary.php?q=' + author_value;
-    console.log('URL: ' + rest_url);
-    
-    fetch(rest_url).then(onResponse).then(onJson);
+    fetch(rest_url).then(onResponseRicercaDB).then(onJson);
 }
 
-const form = document.querySelector('#ricerca');
-form.addEventListener('submit', search);
-
+const formRicercaLibri = document.querySelector('#ricerca');
+if (formRicercaLibri) {
+    formRicercaLibri.addEventListener('submit', search);
+}
 
 
 function onResponseRanking(response) {

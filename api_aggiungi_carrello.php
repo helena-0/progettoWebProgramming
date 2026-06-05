@@ -9,9 +9,33 @@
     }
 
     $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);
-    
     $userid = $_SESSION["user_id"];
-    $libro_id = mysqli_real_escape_string($conn, $_POST["id_libro"]);
+
+    if (isset($_POST["id_libro"])) {
+        $libro_id = mysqli_real_escape_string($conn, $_POST["id_libro"]);
+    } 
+    else if (isset($_POST["titolo"])) {
+        $titolo = mysqli_real_escape_string($conn, $_POST["titolo"]);
+        $autore = mysqli_real_escape_string($conn, $_POST["autore"]);
+        $copertina = mysqli_real_escape_string($conn, $_POST["copertina"]);
+        $prezzo = mysqli_real_escape_string($conn, $_POST["prezzo"]);
+        $prezzo_sconto = mysqli_real_escape_string($conn, $_POST["prezzo_sconto"]);
+
+        $query_cerca = "SELECT id FROM libri WHERE titolo = '$titolo' AND autore = '$autore'";
+        $res_cerca = mysqli_query($conn, $query_cerca);
+
+        if (mysqli_num_rows($res_cerca) > 0) {
+            $row = mysqli_fetch_assoc($res_cerca);
+            $libro_id = $row['id'];
+        } else {
+            $query_inserisci = "INSERT INTO libri(copertina, titolo, autore, prezzo, prezzo_sconto) VALUES ('$copertina', '$titolo', '$autore', '$prezzo', '$prezzo_sconto')";
+            mysqli_query($conn, $query_inserisci);
+            $libro_id = mysqli_insert_id($conn);
+        }
+    } else {
+        echo json_encode(array("success" => false, "error" => "Dati mancanti"));
+        exit;
+    }
 
     $query_check = "SELECT * FROM carrello WHERE user_id = '$userid' AND libro_id = '$libro_id'";
     $res_check = mysqli_query($conn, $query_check);
