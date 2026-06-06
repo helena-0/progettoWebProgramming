@@ -1,6 +1,10 @@
 function onJsonLeggiCarrello(json) {
     const carrello = document.querySelector('#carrello');
-    carrello.innerHTML = '<h2>Il mio carrello</h2>';
+
+    carrello.innerHTML = ''; 
+    const titoloCarrello = document.createElement('h2');
+    titoloCarrello.textContent = 'Il mio carrello';
+    carrello.appendChild(titoloCarrello);
 
     if (json.length === 0) {
         aggiornaStatoCarrello();
@@ -123,6 +127,15 @@ function aggiornaStatoCarrello() {
     const numeroLibri = carrello.querySelectorAll('.articolo_libro').length;
 
     if (numeroLibri === 0) {
-        carrello.innerHTML = '<h2>Il mio carrello</h2>Il tuo carrello è vuoto. Aggiungi qualche libro!';
+        carrello.innerHTML = ''; 
+
+        const titoloCarrello = document.createElement('h2');
+        titoloCarrello.textContent = 'Il mio carrello';
+        
+        const testoVuoto = document.createElement('div');
+        testoVuoto.textContent = 'Il tuo carrello è vuoto. Aggiungi qualche libro!';
+
+        carrello.appendChild(titoloCarrello);
+        carrello.appendChild(testoVuoto);
     }
 }

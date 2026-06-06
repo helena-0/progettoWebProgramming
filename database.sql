@@ -35,3 +35,9 @@ CREATE TABLE carrello (
     user_id INT NOT NULL,
     libro_id INT NOT NULL
 );
+
+CREATE TABLE preferiti (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    libro_id INT NOT NULL
+);

@@ -44,65 +44,115 @@ scorridx_banner.addEventListener('click', OnClickDX);
 
 //-------------------------------------------------------------------------------------
 
-function BottoneRosso(event){
-    const bottone= event.currentTarget; 
-
-    const pannello=document.querySelector('#pannello-preferiti');
-    const flexPreferiti=document.querySelector('#sezionej')
-    pannello.appendChild(flexPreferiti);
-
-    const copertinaLibro= document.createElement('img');
-    copertinaLibro.src=bottone.dataset.copertina;
-
-    const nomeLibro=bottone.dataset.titolo;
-    const prezzoLibro=bottone.dataset.prezzo;
-
-    if(bottone.classList.contains('bottone-rosso')){
+function BottoneRosso(event) {
+    const bottone = event.currentTarget;
+    
+    const datiDaSpedire = new FormData(); 
+ 
+    if (bottone.classList.contains('bottone-rosso')) {
         bottone.classList.remove('bottone-rosso');
+    } else {
+        bottone.classList.add('bottone-rosso');
+    }
 
-        const LibriSalvati= flexPreferiti.querySelectorAll('.libroj');
+    if (bottone.dataset.idLibro) {
+        datiDaSpedire.append('id_libro', bottone.dataset.idLibro);
+        
+    } else if (bottone.dataset.titolo) {
+        datiDaSpedire.append('titolo', bottone.dataset.titolo);
+        datiDaSpedire.append('autore', bottone.dataset.autore || 'Autore sconosciuto');
+        datiDaSpedire.append('copertina', bottone.dataset.copertina);
+        datiDaSpedire.append('prezzo', bottone.dataset.prezzo);
+        datiDaSpedire.append('prezzo_sconto', bottone.dataset.prezzoSconto || '');
+    }
 
-        for(let i=0; i<LibriSalvati.length; i++){
-            if(LibriSalvati[i].dataset.nome===nomeLibro){
-                LibriSalvati[i].remove();
-                break;
+    const opzioni = { 
+        method: 'post', 
+        body: datiDaSpedire 
+    };
+
+    fetch('api_aggiungi_preferito.php', opzioni)
+        .then(function(res) { return res.json(); })
+        .then(function(json) {
+            caricaPreferitiDalDB();
+        });
+}
+
+function caricaPreferitiDalDB() {
+    const flexPreferiti = document.querySelector('#sezionej');
+    if (!flexPreferiti) return;
+
+    fetch('api_leggi_preferiti.php')
+        .then(function(response) { return response.json(); })
+        .then(function(json) {
+            flexPreferiti.innerHTML = ''; 
+
+            for (let i = 0; i < json.length; i++) {
+                const libro = json[i];
+
+                const elemPreferito = document.createElement('article');
+                elemPreferito.classList.add('libroj');
+
+                const contenitoreImm = document.createElement('div');
+                contenitoreImm.classList.add("contenitore-immaginej");
+                
+                const copertinaLibro = document.createElement('img');
+                copertinaLibro.src = libro.copertina;
+                
+                contenitoreImm.appendChild(copertinaLibro);
+                elemPreferito.appendChild(contenitoreImm);
+
+                const descrizione = document.createElement('div');
+                descrizione.classList.add('libro-descrizionej');
+                
+                const titolo = document.createElement('div');
+                titolo.classList.add("titoloj");
+                titolo.textContent = libro.titolo;
+                
+                const prezzo = document.createElement('div');
+                prezzo.classList.add("sottotitoloj");
+                prezzo.textContent = libro.prezzo;
+
+                const btnRimuovi = document.createElement('button');
+                btnRimuovi.textContent = "Rimuovi";
+                btnRimuovi.classList.add('bottoneEliminaPreferito');
+                
+                btnRimuovi.dataset.idLibro = libro.libro_id; 
+                
+                btnRimuovi.addEventListener('click', BottoneRosso); 
+
+                descrizione.appendChild(titolo);
+                descrizione.appendChild(prezzo);
+                descrizione.appendChild(btnRimuovi);
+                
+                elemPreferito.appendChild(descrizione);
+                flexPreferiti.appendChild(elemPreferito);
+            }
+
+            coloraCuoriNellaPagina(json);
+        });
+}
+
+function coloraCuoriNellaPagina(preferitiJson) {
+    const tuttiIBottoni = document.querySelectorAll('.pulsante-freccia');
+    
+    for (let i = 0; i < tuttiIBottoni.length; i++) {
+        const elemento = tuttiIBottoni[i];
+        if (!elemento.classList.contains('destra') && !elemento.classList.contains('destra-ricerca')) {
+            
+            elemento.classList.remove('bottone-rosso');
+            
+            const titoloCuore = elemento.dataset.titolo;
+            for (let j = 0; j < preferitiJson.length; j++) {
+                if (preferitiJson[j].titolo === titoloCuore) {
+                    elemento.classList.add('bottone-rosso');
+                }
             }
         }
     }
-    else{
-        bottone.classList.add('bottone-rosso');
-
-        const elemPreferito= document.createElement('article');
-        elemPreferito.classList.add('libroj');
-        elemPreferito.dataset.nome = nomeLibro; 
-        flexPreferiti.appendChild(elemPreferito);
-
-        const contenitoreImm=document.createElement('div');
-        contenitoreImm.classList.add("contenitore-immaginej");
-        elemPreferito.appendChild(contenitoreImm);
-        contenitoreImm.appendChild(copertinaLibro);
-
-        const descrizione=document.createElement('div');
-        descrizione.classList.add('libro-descrizionej');
-        elemPreferito.appendChild(descrizione);
-
-        const titolo=document.createElement('div');
-        titolo.classList.add("titoloj");
-        titolo.textContent=nomeLibro;
-        descrizione.appendChild(titolo);
-
-        const prezzo=document.createElement('div');
-        prezzo.classList.add("sottotitoloj");
-        prezzo.textContent=prezzoLibro;
-        descrizione.appendChild(prezzo);
-    }
-
 }
 
-const bottoni_novità=document.querySelectorAll('.libro .pulsante-freccia.sinistra');
-for(let i=0; i<bottoni_novità.length; i++){
-        bottoni_novità[i].addEventListener('click', BottoneRosso);
-}
+
 // ------------------------------------------------------------------------------------------
 
 
@@ -147,6 +197,7 @@ function onJsonCaricaCatalogo(json) {
         if (utenteLoggato) {
             const btnPreferiti = document.createElement('div');
             btnPreferiti.classList.add('pulsante-freccia', 'sinistra');
+            btnPreferiti.dataset.idLibro = libro.id; 
             btnPreferiti.dataset.copertina = libro.copertina;
             btnPreferiti.dataset.titolo = libro.titolo;
             btnPreferiti.dataset.prezzo = libro.prezzo;
@@ -182,8 +233,14 @@ function onJsonCaricaCatalogo(json) {
         titolo.appendChild(spanTitolo);
 
         const sottotitolo = document.createElement('div');
-        sottotitolo.classList.add('sottotitolo');
-        sottotitolo.innerHTML = 'di <span>' + libro.autore + '</span>'; //CONTROLLARE
+        sottotitolo.classList.add('sottotitolo');        
+        const spanDi = document.createElement('span');
+        spanDi.textContent = 'di ';      
+        const spanAutore = document.createElement('span');
+        spanAutore.textContent = libro.autore;
+        
+        sottotitolo.appendChild(spanDi);
+        sottotitolo.appendChild(spanAutore);
 
         divTitoloAutore.appendChild(titolo);
         divTitoloAutore.appendChild(sottotitolo);
@@ -219,6 +276,7 @@ function onJsonCaricaCatalogo(json) {
 
     if (utenteLoggato) {
         ripristinaStatoCarrelloHome();
+        caricaPreferitiDalDB();
     }
 }
 // ------------------------------------------------------------------------------------------
@@ -262,7 +320,7 @@ function aggiungiAlCarrello(event) {
     if (bottone.dataset.idLibro) {
         dati_carrello.append('id_libro', bottone.dataset.idLibro);
     } else if (bottone.dataset.titolo) {
-        dati_carrello.append('titolo', bottone.dataset.titolo); //CONTROLLARE
+        dati_carrello.append('titolo', bottone.dataset.titolo); 
         dati_carrello.append('autore', bottone.dataset.autore);
         dati_carrello.append('copertina', bottone.dataset.copertina);
         dati_carrello.append('prezzo', bottone.dataset.prezzo);
@@ -369,7 +427,10 @@ function onJson(json) {
 
     let num_results = json.num_found;
     if (num_results === 0) {
-        library.innerHTML = '<div style="padding: 20px; font-weight: 500;">Nessun libro trovato su Open Library.</div>';
+        const divErrore = document.createElement('div');
+        divErrore.textContent = 'Nessun libro trovato su Open Library.';
+        
+        library.appendChild(divErrore);
         return;
     }
 
@@ -402,8 +463,18 @@ function onJson(json) {
         infoDiv.classList.add('info-ricerca');
 
         const caption = document.createElement('div');
-        caption.innerHTML = '<strong>' + title + '</strong><br>di ' + autore;
         caption.classList.add('descrizione-ricerca');
+
+        const strongTitolo = document.createElement('strong');
+        strongTitolo.textContent = title;
+        const br = document.createElement('br');
+        const spanAutore = document.createElement('span');
+        spanAutore.textContent = 'di ' + autore;
+
+        caption.appendChild(strongTitolo);
+        caption.appendChild(br);
+        caption.appendChild(spanAutore);
+        
         infoDiv.appendChild(caption);
 
         if (utenteLoggato) {
@@ -412,9 +483,11 @@ function onJson(json) {
 
             const btnPreferiti = document.createElement('div');
             btnPreferiti.classList.add('pulsante-freccia'); 
-            btnPreferiti.dataset.copertina = cover_url;
             btnPreferiti.dataset.titolo = title;
+            btnPreferiti.dataset.autore = autore;
+            btnPreferiti.dataset.copertina = cover_url;
             btnPreferiti.dataset.prezzo = prezzoFittizio;
+            btnPreferiti.dataset.prezzoSconto = prezzoScontoFittizio;
             const imgCuore = document.createElement('img');
             imgCuore.src = 'immagini/favorite.png';
             btnPreferiti.appendChild(imgCuore);
