@@ -1,9 +1,9 @@
 function onJsonLeggiCarrello(json) {
-    const carrello = document.querySelector('#carrello');
+    const carrello = document.querySelector("#carrello");
 
-    carrello.innerHTML = ''; 
-    const titoloCarrello = document.createElement('h2');
-    titoloCarrello.textContent = 'Il mio carrello';
+    carrello.innerHTML = ""; 
+    const titoloCarrello = document.createElement("h2");
+    titoloCarrello.textContent = "Il mio carrello";
     carrello.appendChild(titoloCarrello);
 
     if (json.length === 0) {
@@ -22,9 +22,9 @@ function rimuoviDalCarrello(event) {
     const idLibro = bottone.dataset.idLibro; 
     
     const dati_carrello = new FormData();
-    dati_carrello.append('id_libro', idLibro);
+    dati_carrello.append("id_libro", idLibro);
 
-    fetch('api_aggiungi_carrello.php', { method: 'post', body: dati_carrello })
+    fetch("api_aggiungi_carrello.php", { method: "post", body: dati_carrello })
         .then(function(response) {
             return response.json();
         })
@@ -43,52 +43,52 @@ function rimuoviDalCarrello(event) {
 
 
 function creaSchedaLibro(libro) {
-    const carrello = document.querySelector('#carrello');
+    const carrello = document.querySelector("#carrello");
 
-    const article = document.createElement('article');
-    article.classList.add('articolo_libro');
+    const article = document.createElement("article");
+    article.classList.add("articolo_libro");
 
-    const contenitore = document.createElement('div');
-    contenitore.classList.add('contenitore_immagine');
+    const contenitore = document.createElement("div");
+    contenitore.classList.add("contenitore_immagine");
 
-    const immagine = document.createElement('img')
+    const immagine = document.createElement("img")
     immagine.src = libro.copertina; 
 
-    const contenitore_descrizione = document.createElement('div');
-    contenitore_descrizione.classList.add('contenitore_descrizione');
+    const contenitore_descrizione = document.createElement("div");
+    contenitore_descrizione.classList.add("contenitore_descrizione");
 
-    const descrizione = document.createElement('div');
-    descrizione.classList.add('descrizione'); 
+    const descrizione = document.createElement("div");
+    descrizione.classList.add("descrizione"); 
 
-    const titolo_libro = document.createElement('div');
-    titolo_libro.classList.add('titolo');
+    const titolo_libro = document.createElement("div");
+    titolo_libro.classList.add("titolo");
     titolo_libro.textContent = libro.titolo;
     
-    const autore_libro = document.createElement('div');
-    autore_libro.classList.add('autore');
+    const autore_libro = document.createElement("div");
+    autore_libro.classList.add("autore");
     autore_libro.textContent=libro.autore;
     
 
-    const div_prezzo = document.createElement('div');
-    div_prezzo.classList.add('divPrezzo');
+    const div_prezzo = document.createElement("div");
+    div_prezzo.classList.add("divPrezzo");
 
-    const prezzo_libro = document.createElement('div');
-    prezzo_libro.classList.add('prezzo');
+    const prezzo_libro = document.createElement("div");
+    prezzo_libro.classList.add("prezzo");
     prezzo_libro.textContent = libro.prezzo; 
 
-    const prezzosconto_libro = document.createElement('div');
-    prezzosconto_libro.classList.add('sconto');
+    const prezzosconto_libro = document.createElement("div");
+    prezzosconto_libro.classList.add("sconto");
     prezzosconto_libro.textContent = libro.prezzo_sconto;
 
-    const disponibile = document.createElement('div');
-    disponibile.classList.add('disponibilita');
+    const disponibile = document.createElement("div");
+    disponibile.classList.add("disponibilita");
     disponibile.textContent = "Disponibilità immediata";
 
-    const bottone_elimina=document.createElement('button');
+    const bottone_elimina=document.createElement("button");
     bottone_elimina.textContent="Rimuovi";
-    bottone_elimina.classList.add('bottoneElimina');
+    bottone_elimina.classList.add("bottoneElimina");
     bottone_elimina.dataset.idLibro = libro.libro_id;
-    bottone_elimina.addEventListener('click', rimuoviDalCarrello);
+    bottone_elimina.addEventListener("click", rimuoviDalCarrello);
 
     carrello.appendChild(article);
 
@@ -113,27 +113,27 @@ function onResponseLeggiCarrello(response) {
 }
 
 function caricaCarrelloAsincrono() {
-    const contenitore = document.querySelector('#carrello');
+    const contenitore = document.querySelector("#carrello");
  
     if (contenitore) {
-        fetch('api_leggi_carrello.php').then(onResponseLeggiCarrello).then(onJsonLeggiCarrello);
+        fetch("api_leggi_carrello.php").then(onResponseLeggiCarrello).then(onJsonLeggiCarrello);
     }
 }
 
 caricaCarrelloAsincrono();
 
 function aggiornaStatoCarrello() {
-    const carrello = document.querySelector('#carrello');
-    const numeroLibri = carrello.querySelectorAll('.articolo_libro').length;
+    const carrello = document.querySelector("#carrello");
+    const numeroLibri = carrello.querySelectorAll(".articolo_libro").length;
 
     if (numeroLibri === 0) {
-        carrello.innerHTML = ''; 
+        carrello.innerHTML = ""; 
 
-        const titoloCarrello = document.createElement('h2');
-        titoloCarrello.textContent = 'Il mio carrello';
+        const titoloCarrello = document.createElement("h2");
+        titoloCarrello.textContent = "Il mio carrello";
         
-        const testoVuoto = document.createElement('div');
-        testoVuoto.textContent = 'Il tuo carrello è vuoto. Aggiungi qualche libro!';
+        const testoVuoto = document.createElement("div");
+        testoVuoto.textContent = "Il tuo carrello è vuoto. Aggiungi qualche libro!";
 
         carrello.appendChild(titoloCarrello);
         carrello.appendChild(testoVuoto);

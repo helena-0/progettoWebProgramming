@@ -1,13 +1,13 @@
 <?php
-    require_once 'auth.php';
+    require_once "auth.php";
     $userid = checkAuth();
     if (!$userid) {
         header("Location: index.php");
         exit;
     }
 
-    require_once 'dbconfig.php';
-    $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);
+    require_once "dbconfig.php";
+    $conn = mysqli_connect($dbconfig["host"], $dbconfig["user"], $dbconfig["password"], $dbconfig["name"]);
 
     $query = "SELECT nome, cognome, email FROM utenti WHERE id = '$userid'";
     $res = mysqli_query($conn, $query);
@@ -257,11 +257,11 @@
                     <div>
                         <article>
                             <h4>Email</h4>
-                            <p><?php echo $user_data['email']; ?></p>
+                            <p><?php echo $user_data["email"]; ?></p>
                         </article>
                         <article>
                             <h4>Nome e Cognome</h4>
-                            <p><?php echo $user_data['nome']. " " .$user_data['cognome'];?></p>
+                            <p><?php echo $user_data["nome"]. " " .$user_data["cognome"];?></p>
                         </article>
                     </div>
                 </section>

@@ -1,7 +1,7 @@
 <?php
     session_start();
-    header('Content-Type: application/json');
-    require_once 'dbconfig.php';
+    header("Content-Type: application/json");
+    require_once "dbconfig.php";
 
     $risposta = array();
 
@@ -12,7 +12,7 @@
         exit;
     }
 
-    $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);
+    $conn = mysqli_connect($dbconfig["host"], $dbconfig["user"], $dbconfig["password"], $dbconfig["name"]);
     $userid = $_SESSION["user_id"];
 
     $query_carrello = "DELETE FROM carrello WHERE user_id = '$userid'";

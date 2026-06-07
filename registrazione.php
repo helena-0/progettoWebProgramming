@@ -1,5 +1,5 @@
 <?php
-    require_once 'auth.php';
+    require_once "auth.php";
 
     if (checkAuth()) {
         header("Location: index.php");
@@ -10,7 +10,7 @@
     !empty($_POST["conferma_password"])){
 
         $error=[];
-        $conn=mysqli_connect($dbconfig['host'],$dbconfig['user'],$dbconfig['password'],$dbconfig['name']) or die(mysqli_connect($conn));
+        $conn=mysqli_connect($dbconfig["host"],$dbconfig["user"],$dbconfig["password"],$dbconfig["name"]) or die(mysqli_connect($conn));
 
         if(strlen($_POST["password"])<8){
             $error[]="Caratteri insufficienti";
@@ -20,11 +20,11 @@
             $error[]="Le password non coincidono";
         }
 
-        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
             $error[] = "Email non valida";
         }
         else{
-            $email = mysqli_real_escape_string($conn, strtolower($_POST['email']));
+            $email = mysqli_real_escape_string($conn, strtolower($_POST["email"]));
             $res = mysqli_query($conn, "SELECT email FROM utenti WHERE email = '$email'");
             if (mysqli_num_rows($res) > 0) {
                 $error[] = "Email già utilizzata";
@@ -32,11 +32,11 @@
         }
 
         if(count($error)==0){
-            $nome=mysqli_real_escape_string($conn, $_POST['nome']);
-            $cognome=mysqli_real_escape_string($conn, $_POST['cognome']);
-            $email=mysqli_real_escape_string($conn, $_POST['email']);
+            $nome=mysqli_real_escape_string($conn, $_POST["nome"]);
+            $cognome=mysqli_real_escape_string($conn, $_POST["cognome"]);
+            $email=mysqli_real_escape_string($conn, $_POST["email"]);
 
-            $password=mysqli_real_escape_string($conn, $_POST['password']);
+            $password=mysqli_real_escape_string($conn, $_POST["password"]);
             $password = password_hash($password, PASSWORD_BCRYPT);
 
             $query="INSERT INTO utenti(nome, cognome, email, password) VALUES('$nome', '$cognome', '$email', '$password')";

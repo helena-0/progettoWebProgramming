@@ -1,10 +1,10 @@
 <?php
-    header('Content-Type: application/json');
+    header("Content-Type: application/json");
 
-    $api_key = 'cb216e086c72157de88a76d71631e973';
+    $api_key = "cb216e086c72157de88a76d71631e973";
 
-    if(isset($_GET['q'])) {
-        $query = urlencode($_GET['q']);
+    if(isset($_GET["q"])) {
+        $query = urlencode($_GET["q"]);
         $url = "https://api.themoviedb.org/3/search/movie?api_key=" . $api_key . "&language=it-IT&query=" . $query;
     } else {
         $url = "https://api.themoviedb.org/3/movie/now_playing?api_key=" . $api_key . "&language=it-IT&region=IT";

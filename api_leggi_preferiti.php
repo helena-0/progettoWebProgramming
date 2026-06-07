@@ -1,7 +1,7 @@
 <?php
     session_start();
-    header('Content-Type: application/json');
-    require_once 'dbconfig.php';
+    header("Content-Type: application/json");
+    require_once "dbconfig.php";
 
     $risposta = array();
     if (!isset($_SESSION["user_id"])) {

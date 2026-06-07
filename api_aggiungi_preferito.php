@@ -1,7 +1,7 @@
 <?php
     session_start();
-    header('Content-Type: application/json');
-    require_once 'dbconfig.php';
+    header("Content-Type: application/json");
+    require_once "dbconfig.php";
 
     if (!isset($_SESSION["user_id"])) {
         echo json_encode(array("success" => false, "error" => "Non loggato"));
@@ -26,7 +26,7 @@
 
         if (mysqli_num_rows($res_cerca) > 0) {
             $row = mysqli_fetch_assoc($res_cerca);
-            $libro_id = $row['id'];
+            $libro_id = $row["id"];
         } else {
             $query_inserisci = "INSERT INTO libri(copertina, titolo, autore, prezzo, prezzo_sconto) VALUES ('$copertina', '$titolo', '$autore', '$prezzo', '$prezzo_sconto')";
             mysqli_query($conn, $query_inserisci);

@@ -1,13 +1,13 @@
 <?php
-    require_once 'auth.php';
+    require_once "auth.php";
     $userid = checkAuth();
     if (!$userid) {
         header("Location: index.php");
         exit;
     }
 
-    require_once 'dbconfig.php';
-    $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);
+    require_once "dbconfig.php";
+    $conn = mysqli_connect($dbconfig["host"], $dbconfig["user"], $dbconfig["password"], $dbconfig["name"]);
 
     $query = "SELECT nome, cognome, email FROM utenti WHERE id = '$userid'";
     $res = mysqli_query($conn, $query);
@@ -162,7 +162,7 @@
                                         <div><span>In prenotazione</span></div>
                                         <div><span>Guida ai migliori manga</span></div>
                                         <div><span>Capire Zerocalcare</span></div>
-                                        <div><span>Concorso Nuvolette all'Orizzonte</span></div>
+                                        <div><span>Concorso Nuvolette all"Orizzonte</span></div>
                                     </div>
                                 </section>
                             </div>
@@ -540,7 +540,7 @@
                 <div id="footer-bianco2">
                     <a href="#">Dichiarazione di Accessibilità</a>
                     <a href="#">Codice etico</a>
-                    <a href="#">Condizioni d'uso del sito</a>
+                    <a href="#">Condizioni d"uso del sito</a>
                     <a href="#">Informativa sulla risoluzione alternativa controversie consumatori - ADR/ODR</a>
                     <a href="#">Informativa sulla garanzia legale di conformità</a>
                     <a href="#">Informativa sul RAEE</a>

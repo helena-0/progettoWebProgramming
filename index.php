@@ -1,5 +1,5 @@
 <?php
-    require_once 'auth.php';
+    require_once "auth.php";
     $isLogged=checkAuth();
 
     $email_precompilata = "";

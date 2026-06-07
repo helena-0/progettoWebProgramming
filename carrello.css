@@ -1,6 +1,6 @@
 body{
     margin: 0;
-    font-family: 'Montserrat';
+    font-family: "Montserrat";
 }
 
 a{
@@ -84,7 +84,7 @@ a{
 
 .input-ricerca{
     background-color: transparent;
-    font-family: 'Montserrat';
+    font-family: "Montserrat";
     font-weight: 500;
     font-size: 14px;
     width: 100%;
