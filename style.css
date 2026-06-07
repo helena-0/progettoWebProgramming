@@ -177,13 +177,18 @@ a{
 }
 
 #sezione-ricerca .pulsante-freccia {
+    display: flex;
     position: static;
     padding: 8px; 
+    width: 15px;
+    height: 15px;
+    justify-content: center;
+    align-items: center;
 }
 
 #sezione-ricerca .pulsante-freccia img {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
 }
 
 #pannello-preferiti{
@@ -200,6 +205,17 @@ a{
 
 #pannello-preferiti.hidden{
     display: none;
+}
+
+.bottoneRimuovi{
+    cursor: pointer;
+
+    padding-top: 7px;
+    font-size: 13px;
+}
+
+.bottoneRimuovi:hover{
+    color: #e30613;
 }
 
 #sezionej {

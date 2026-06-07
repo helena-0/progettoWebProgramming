@@ -113,9 +113,9 @@ function caricaPreferitiDalDB() {
                 prezzo.classList.add("sottotitoloj");
                 prezzo.textContent = libro.prezzo;
 
-                const btnRimuovi = document.createElement('button');
+                const btnRimuovi = document.createElement('a');
                 btnRimuovi.textContent = "Rimuovi";
-                btnRimuovi.classList.add('bottoneEliminaPreferito');
+                btnRimuovi.classList.add("bottoneRimuovi");
                 
                 btnRimuovi.dataset.idLibro = libro.libro_id; 
                 
