@@ -59,7 +59,7 @@ h1{
 #registrazione div{
     display: flex;
     flex-direction: column;
-    padding-bottom:27px;
+    padding-bottom:23px;
     position: relative;
 }
 

@@ -14,6 +14,7 @@
 
     $user_data = mysqli_fetch_assoc($res);
     
+    mysqli_free_result($res);
     mysqli_close($conn);
 
 ?>
@@ -69,11 +70,9 @@
                 <div class="icone">
                     <img src="immagini/favorite.png" class="logo" id="preferiti">
                     <img src="immagini/cart.png" class="logo" >    
-                    <?php if ($userid==true){?> 
-                        <a href="account.php">  
-                            <img src="immagini/person_log.png" class="logo">
-                        </a>
-                      <?php }?>    
+                    <a href="account.php">  
+                        <img src="immagini/person_log.png" class="logo">
+                    </a>           
                 </div>
 
                 <div id="pannello-preferiti" class="hidden">

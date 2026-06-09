@@ -1,5 +1,4 @@
 <?php
-    header("Content-Type: application/json");
     require_once "dbconfig.php";
 
     $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);

@@ -1,6 +1,5 @@
 <?php
-    header("Content-Type: application/json");
-
+    
     $api_key = "cb216e086c72157de88a76d71631e973";
 
     if(isset($_GET["q"])) {

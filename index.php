@@ -698,7 +698,7 @@
                 </span>
                 <div>Avrai accesso ai tuoi acquisti e al mondo Feltrinelli</div>
             </div>
-            <form id="form_login">
+            <form id="form_login" action="login.php" method="POST">
                 <div>
                     <div class="dati-accesso">
                         <input type="text" name="email" id="log_email" placeholder="Email" value="<?php echo $email_precompilata; ?>">

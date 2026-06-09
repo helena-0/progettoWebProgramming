@@ -17,7 +17,7 @@ function OnClickDX(){
 
     const FotoSrc=FOTO_BANNER[contatore];
 
-    Immagine=document.querySelector("#banner img");
+    const Immagine=document.querySelector("#banner img");
     Immagine.src=FotoSrc;
 
 }
@@ -32,7 +32,7 @@ function OnClickSX(){
     
     const FotoSrc=FOTO_BANNER[contatore];
 
-    Immagine=document.querySelector("#banner img");
+    const Immagine=document.querySelector("#banner img");
     Immagine.src=FotoSrc;
 
 }
@@ -394,6 +394,7 @@ if (formLogin) {
 
 
 function visualizzaPreferiti(){
+    event.preventDefault();
     const pulsante=document.querySelector("#pannello-preferiti");
     if(pulsante.classList.contains("hidden"))
         pulsante.classList.remove("hidden");

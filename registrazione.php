@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
     require_once "auth.php";
 
@@ -10,7 +11,7 @@
     !empty($_POST["conferma_password"])){
 
         $error=[];
-        $conn=mysqli_connect($dbconfig["host"],$dbconfig["user"],$dbconfig["password"],$dbconfig["name"]) or die(mysqli_connect($conn));
+        $conn=mysqli_connect($dbconfig["host"],$dbconfig["user"],$dbconfig["password"],$dbconfig["name"]) or die(mysqli_error($conn));
 
         if(strlen($_POST["password"])<8){
             $error[]="Caratteri insufficienti";

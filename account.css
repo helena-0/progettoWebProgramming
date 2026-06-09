@@ -548,6 +548,7 @@ h3{
 }
 
 #elimina button{
+    cursor: pointer;
     height: 40px;
     width: 10%;
     border-radius: 10px;
@@ -940,6 +941,7 @@ h3{
 }
 
 #boxElimina button{
+    cursor: pointer;
     height: 40px;
     width: 100%;
 
@@ -958,4 +960,25 @@ h3{
 #boxElimina a{
     font-size: 13px;
     padding-top: 10px;
+}
+
+#boxElimina .scrittaElimina{
+    display: block;
+    color: #03821f;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.contenitore-link{
+    display: flex;
+    justify-content: center;
+}
+
+.bottoneRitorno{
+    background-color: #263238;
+    color : white;
+    padding : 10px;
+    border-radius : 4px;
+    text-decoration : none;
+    font-weight : 600;
 }

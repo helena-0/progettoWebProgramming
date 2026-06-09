@@ -5,7 +5,6 @@
         exit;
     }
 
-    header("Content-Type: application/json");
     $conn = mysqli_connect($dbconfig["host"], $dbconfig["user"], $dbconfig["password"], $dbconfig["name"]);
     $email = mysqli_real_escape_string($conn, $_GET["q"]);
     $query = "SELECT email FROM utenti WHERE email = '$email'";

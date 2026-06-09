@@ -1,6 +1,27 @@
 function onJsonEliminaAccount(json) {
     if (json.success === true) {
-        window.location.href = "index.php";
+        const boxElimina = document.querySelector("#boxElimina");
+        
+        boxElimina.innerHTML = ''; 
+
+        const messaggio = document.createElement('span');
+        messaggio.textContent = "Account eliminato con successo!";
+        messaggio.classList.add("scrittaElimina");
+
+        
+        const divLink = document.createElement('div');
+        divLink.classList.add("contenitore-link")
+
+        const linkHome = document.createElement('a');
+        linkHome.href = "index.php";
+        linkHome.textContent = "Torna alla Home";
+        
+        linkHome.classList.add("bottoneRitorno");
+
+        divLink.appendChild(linkHome);
+        boxElimina.appendChild(messaggio);
+        boxElimina.appendChild(divLink);
+
     } else {
         alert("Errore: " + json.error);
     }
@@ -18,7 +39,6 @@ const btnEliminaAccount = document.querySelector("#bottone_conferma");
 if (btnEliminaAccount) {
     btnEliminaAccount.addEventListener("click", eliminaAccount);
 }
-
 //----------------------------------------------------------------------------------------------------
 
 function modale(){
@@ -32,7 +52,10 @@ if(accesso){
     accesso.addEventListener("click", modale);
 }
 
-function chiudereModale(){
+function chiudereModale(event){
+
+    event.preventDefault();
+
     document.body.classList.remove("no-scroll");
     const vistaModale=document.querySelector("#modal-view");
     vistaModale.classList.add("hidden");
@@ -40,3 +63,6 @@ function chiudereModale(){
 
 const annulla=document.querySelector("#boxElimina a");
 annulla.addEventListener("click",chiudereModale);
+
+
+

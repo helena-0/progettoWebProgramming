@@ -1,6 +1,5 @@
 <?php
     session_start();
-    header("Content-Type: application/json");
     require_once "dbconfig.php";
 
     $risposta = array();
@@ -17,6 +16,9 @@
 
     $query_carrello = "DELETE FROM carrello WHERE user_id = '$userid'";
     mysqli_query($conn, $query_carrello);
+
+    $query_preferiti = "DELETE FROM preferiti WHERE user_id = '$userid'";
+    mysqli_query($conn, $query_preferiti);
 
     $query_utente = "DELETE FROM utenti WHERE id = '$userid'";
     
