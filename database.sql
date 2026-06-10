@@ -23,11 +23,7 @@ INSERT INTO libri (copertina, titolo, autore, prezzo, prezzo_sconto) VALUES
 ('immagini/libronov2.jpg', 'Funny Story', 'Emily Henry','17,00€', '17,90€'),
 ('immagini/libronov3.jpg', 'Vento e Verità', 'Brandon Sanderson', '33,25€', '35,00€'),
 ('immagini/libro2.jpg', 'Saggio sulla lucidità', 'José Saramago','12,35€', '13,00€'),
-('immagini/libronov5.jpg', 'Heated Rivarly', 'Rachel Reid','17,00€', '17,90€'),
-('immagini/libro1.jpg', 'Io sono Adele', 'Csaba dalla Zorza', '17,10€', '18,00€'),
-('immagini/libro3.jpg', 'La morte di Ivan Il\'ic', ' Lev Tolstoj', '15,30€', '16,00€'),
-('immagini/libro4.jpg', 'Il giocatore', 'Fëdor Dostoevskij', '15,30€', '16,00€'),
-('immagini/libro5.jpg', 'Le origini del male', ' You-jeong Jeong', '14,70€', '15,30€');
+('immagini/libronov5.jpg', 'Heated Rivarly', 'Rachel Reid','17,00€', '17,90€');
 
 
 CREATE TABLE carrello (
