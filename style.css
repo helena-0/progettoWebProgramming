@@ -110,7 +110,7 @@ a{
 
 #ricerca a{
     width: 10%; 
-    font-weight: 550;
+    font-weight: 600;
     font-size: .75em;
     padding-left: 2%;
     text-decoration: underline;
@@ -391,7 +391,7 @@ header{
     cursor: pointer;
 }
 
-#contenitore-promo{
+#contenitore-promo, #contenitore-promo2{
     background-image: url(immagini/promo-libro.jpg);
     background-size: cover;
     height: 100%;
@@ -402,11 +402,6 @@ header{
 
 #contenitore-promo2{
     background-image: url(immagini/promo-libro2.jpg);
-    background-size: cover;
-    height: 100%;
-    width: 130%;
-    position: relative;
-    z-index: -2;
 }
 
 .overlay-menu{
@@ -420,15 +415,11 @@ header{
     z-index: -1;
 }
 
-#contenitore-promo h2{
+#contenitore-promo h2, #contenitore-promo2 h2{
     color: white;
     margin-left: 10px;
 }
 
-#contenitore-promo2 h2{
-    color: white;
-    margin-left: 10px;
-}
 
 #barra-superiore1024{
     display: none;
@@ -606,13 +597,12 @@ header{
     display: none;
 }
 
-.stelle2{
+.stelle2, #stelle3{
     width: 80px;
 }
 
 #stelle3{
     display: none;
-    width: 80px;
 }
 
 .libro{
@@ -681,7 +671,7 @@ header{
     flex-shrink: 0;
 }
 
-.contenitore-immagine img {
+.contenitore-immagine img, #primo-posto .contenitore-immagine img{
     width: 100%;
     display: block;
 }
@@ -691,10 +681,6 @@ header{
     width: 200px;
 }
 
-#primo-posto .contenitore-immagine img {
-    width: 100%;
-    display: block;
-}
 
 .overlay{
     position:absolute;
@@ -710,7 +696,7 @@ header{
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.libro:hover .titolo span{
+.libro:hover .titolo span, #primo-posto:hover .titolo{
     cursor: pointer;
     border-bottom: 2px solid black;
 }
@@ -721,7 +707,6 @@ header{
 }
 
 #primo-posto:hover .titolo{
-    cursor: pointer;
     border-bottom: 2px solid #b30600;
 }
 
@@ -974,7 +959,7 @@ header{
     align-items: flex-start;
 }
 
-.footer-informazioni{
+.footer-informazioni, .footer-informazioni2{
     display: flex;
     max-width: 1150px;
     margin: 0 auto;
@@ -986,18 +971,7 @@ header{
 
 #footer-grigio .footer-informazioni a{
     color: #f0f1f1;
-}
 
-.footer-informazioni2{
-    display: flex;
-    max-width: 1150px;
-    margin: 0 auto;
-    width: 93%;
-
-    justify-content: space-around;
-}
-
-.footer-informazioni a{
     cursor: pointer;
     display: block;
     margin-bottom: 12px;
@@ -1007,7 +981,7 @@ header{
     text-decoration: underline;
 }
 
-.footer-informazioni .titoli-paragrafi{
+.footer-informazioni .titoli-paragrafi, .footer-informazioni2 .titoli-paragrafi{
     margin-bottom: 17px;
     font-size: 1.1em;
     font-weight: 580;
@@ -1018,15 +992,6 @@ header{
     margin-bottom: 12px;
 }
 
-.footer-informazioni2 div div :hover{
-    text-decoration: underline;
-}
-
-.footer-informazioni2 .titoli-paragrafi{
-    margin-bottom: 17px;
-    font-size: 1.1em;
-    font-weight: 580;
-}
 
 #footer-grigio .icone{
     justify-content: flex-start;
@@ -1075,14 +1040,14 @@ header{
     align-items: center;
 }
 
-#footer-bianco1-sinistra{
+#footer-bianco1-sinistra, #footer-bianco1-destra{
     display: flex;
     width: 60%;
 
     align-items: center;
 }
 
-#footer-bianco1-sinistra div{
+#footer-bianco1-sinistra div, #footer-bianco1-destra div{
     display: flex;
     padding-right: 10px;
 
@@ -1105,18 +1070,10 @@ header{
 }
 
 #footer-bianco1-destra{
-    display: flex;
     width: 40%;
     justify-content: space-between;
-    align-items: center;
 }
 
-#footer-bianco1-destra div{
-    display: flex;
-    padding-right: 10px;
-
-    align-items: center;
-}
 
 #footer-bianco1-destra span{
     padding-right: 12px;
