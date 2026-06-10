@@ -222,13 +222,18 @@ function caricaPreferitiDalDB() {
 
 function coloraCuoriNellaPagina(preferitiJson) {
     const tuttiIBottoni = document.querySelectorAll(".pulsante-freccia");
+    
     for (let i = 0; i < tuttiIBottoni.length; i++) {
         const elemento = tuttiIBottoni[i];
         if (!elemento.classList.contains("destra") && !elemento.classList.contains("destra-ricerca")) {
+            
             elemento.classList.remove("bottone-rosso");
+            
             const titoloCuore = elemento.dataset.titolo;
+            const copertinaCuore = elemento.dataset.copertina; 
+            
             for (let j = 0; j < preferitiJson.length; j++) {
-                if (preferitiJson[j].titolo === titoloCuore) {
+                if (preferitiJson[j].titolo === titoloCuore && preferitiJson[j].copertina === copertinaCuore) {
                     elemento.classList.add("bottone-rosso");
                 }
             }

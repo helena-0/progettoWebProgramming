@@ -1,0 +1,153 @@
+body{
+    margin: 0;
+    display: flex;
+    font-family: "Montserrat";
+}
+
+#body_sx{
+    width: 50%;
+    height: 100vh;
+    background-image: url('immagini/registration-visual.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+#body_sx img{
+    width: 100%
+}
+
+#body_dx{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    width: 50%;
+}
+
+#indietro{
+    display: flex;
+    width: 200px;
+    height: 30px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+#indietro img{
+    width: 30px
+}
+
+#reg{
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
+    padding-right: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    color: #e30613;
+    
+}
+
+#accesso{
+    width: 400px;
+}
+
+#accesso div{
+    display: flex;
+    flex-direction: column;
+    padding-bottom:23px;
+    position: relative;
+}
+
+input{
+    width: 100%;
+    height: 40px;
+    outline: none;
+}
+
+#submit{
+    cursor: pointer;
+    background-color: #263238;
+    color: white;
+}
+
+#submit:hover{
+    color: #263238;
+    background-color: white;
+}
+
+#accesso span{
+    display: none;
+    font-size: 10px;
+    bottom: 11px;
+    left: 0;
+    position: absolute;
+}
+
+#accesso .errore span {
+    display: block;
+    color: #e30613;
+}
+
+.errore input {
+    border-color: #e30613;
+}
+
+#body_up{
+    display: none;
+    color: #e30613;
+    height: 20px;
+}
+
+#accesso #bottone-reg{
+    padding-bottom: 0px;
+}
+
+#registrazione{
+    display: flex;
+    padding-top: 20px;
+    font-size: 14px;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#registrazione a{
+    padding-left: 2px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+@media(max-width: 1024px){
+
+    body{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #body_sx{
+        display: none;
+    }
+
+    #body_up{
+        display: inline;
+    }
+
+}
+
+.errore-login {
+    display: block;
+    color: #e30613;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+}

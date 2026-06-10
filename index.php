@@ -1,45 +1,6 @@
 <?php
     require_once "auth.php";
     $isLogged = checkAuth();
-
-    $email_precompilata = "";
-    if (isset($_COOKIE["email_salvata"])) {
-        $email_precompilata = $_COOKIE["email_salvata"];
-    }
-
-    $errore_login = null;
-
-    if (!empty($_POST["email"]) && !empty($_POST["password"])) {
-        require_once "dbconfig.php";
-        $conn = mysqli_connect($dbconfig["host"], $dbconfig["user"], $dbconfig["password"], $dbconfig["name"]) or die(mysqli_error($conn));
-        
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $query = "SELECT * FROM utenti WHERE email = '".$email."'";
-        $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
-
-        if (mysqli_num_rows($res) > 0) {
-            $entry = mysqli_fetch_assoc($res);
-            
-            if (password_verify($_POST["password"], $entry["password"])) {
-
-                $_SESSION["email"] = $entry["email"];
-                $_SESSION["user_id"] = $entry["id"]; 
-                
-                setcookie("email_salvata", $_POST["email"], time() + (86400 * 7), "/");
-                
-                mysqli_free_result($res);
-                mysqli_close($conn);
- 
-                header("Location: index.php");
-                exit;
-            }
-        }
-        mysqli_close($conn);
-        $errore_login = "Email e/o password errati.";
-    } else if (isset($_POST["email"]) || isset($_POST["password"])) {
-        $errore_login = "Inserisci email e password.";
-    }
-
 ?>
 
 
@@ -56,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
 </head>
-<body <?php if(isset($errore_login)) echo 'class="no-scroll"'; ?>>
+<body >
     <header>
         <div id="bordo-nav">
             <nav id="navservizi">
@@ -101,8 +62,10 @@
                 <?php } ?> 
                 <?php 
                     if($isLogged==false){ ?>
-                            <img src="immagini/person.png" class="logo" id="loggin">
-                    <?php } 
+                            <a href="login.php">
+                                <img src="immagini/person.png" class="logo" id="loggin">
+                            </a>
+                    <?php }
                     else{ ?>
                         <a href="account.php">
                             <img src="immagini/person_log.png" class="logo">
@@ -722,51 +685,6 @@
             </div>
         </div>
     </footer>
-    
-    <section id="modal-view" class="<?php if(isset($errore_login)) echo ''; else echo 'hidden'; ?>">
-        <section id="boxAccesso">
-            <div>
-                <span id="accesso">
-                    <h1>Accedi</h1>
-                    <img src="immagini/chiudi.png" class="logo">
-                </span>
-                <div>Avrai accesso ai tuoi acquisti e al mondo Feltrinelli</div>
-            </div>
-            <form id="form_login" method="POST">
-                <div>
-                    <div class="dati-accesso">
-                        <input type="text" name="email" id="log_email" placeholder="Email" value="<?php echo $email_precompilata; ?>">
-                    </div>
-                    <div class="dati-accesso">
-                        <input type="password" name="password" id="log_password" placeholder="Password">
-                    </div>
-                    <div id="password-dimenticata">
-                        <a href="#">Password dimenticata?</a>
-                    </div>
-                    <div id="log_errore" class="<?php if(isset($errore_login)) echo 'block'; ?>">
-                        <?php 
-                            if (isset($errore_login)) {
-                                echo $errore_login;
-                            }
-                        ?>
-                    </div>
-                </div>
-                <button>Entra</button>
-            </form>
-            <div id="registrazione">
-                <div>Non hai un account?</div>
-                <a href="registrazione.php">Registrati</a>
-            </div>
-            <div id="alternativa-accesso">
-                <p>Oppure procedi con</p>
-                <div id="accesso-app">
-                    <img src="immagini/cerchio-google.png" class="logo" >
-                    <img src="immagini/cerchio-paypall.png" class="logo">
-                    <img src="immagini/cerchio-apple.png" class="logo">
-                </div>
-            </div>
-        </section>
-    </section>
 
 </body>
 </html>

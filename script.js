@@ -147,8 +147,10 @@ function coloraCuoriNellaPagina(preferitiJson) {
             elemento.classList.remove("bottone-rosso");
             
             const titoloCuore = elemento.dataset.titolo;
+            const copertinaCuore = elemento.dataset.copertina; 
+            
             for (let j = 0; j < preferitiJson.length; j++) {
-                if (preferitiJson[j].titolo === titoloCuore) {
+                if (preferitiJson[j].titolo === titoloCuore && preferitiJson[j].copertina === copertinaCuore) {
                     elemento.classList.add("bottone-rosso");
                 }
             }
@@ -329,52 +331,10 @@ function aggiungiAlCarrello(event) {
 
 inizializzaHome();
 
+
+
 // ----------------------------------------------------------------------------------------------
 
-
-function loggin(){
-    const vistaModale=document.querySelector("#modal-view");
-    document.body.classList.add("no-scroll");
-    vistaModale.classList.remove("hidden");
-}
-
-const accesso=document.querySelector("#loggin");
-if(accesso){
-    accesso.addEventListener("click", loggin);
-}
-
-function chiudereModale(){
-    document.body.classList.remove("no-scroll");
-    const vistaModale=document.querySelector("#modal-view");
-    vistaModale.classList.add("hidden");
-}
-
-const immagineX=document.querySelector("#modal-view .logo");
-immagineX.addEventListener("click",chiudereModale);
-
-
-function validaLogin(event) {
-    const emailInput = document.querySelector("#log_email");
-    const passwordInput = document.querySelector("#log_password");
-    const divErrore = document.querySelector("#log_errore");
-
-    divErrore.classList.add("hidden");  
-
-    if (emailInput.value.length === 0 || passwordInput.value.length === 0) {
-        
-        event.preventDefault(); 
-        
-        divErrore.textContent = "Inserisci email e password.";
-        divErrore.classList.remove("hidden");
-    }
-}
-
-const formLogin = document.querySelector("#form_login"); 
-if (formLogin) {
-    formLogin.addEventListener("submit", validaLogin);
-}
-
-//-------------------------------------------------------------------------------------------
 
 
 function visualizzaPreferiti(){
