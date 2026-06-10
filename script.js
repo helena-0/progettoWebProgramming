@@ -1,3 +1,11 @@
+function onResponse(response) {
+    if (response.ok) {
+        return response.json();
+    } else {
+        return null;
+    }
+}
+
 const FOTO_BANNER=[
     "immagini/banner1.jpg",
     "immagini/banner2.jpg",
@@ -71,66 +79,62 @@ function BottoneRosso(event) {
         body: datiDaSpedire 
     };
 
-    fetch("api_aggiungi_preferito.php", opzioni)
-        .then(function(res) { return res.json(); })
-        .then(function(json) {
-            caricaPreferitiDalDB();
-        });
+    fetch("api_aggiungi_preferito.php", opzioni).then(onResponse).then(function(json) {
+        caricaPreferitiDalDB();
+    });
 }
 
 function caricaPreferitiDalDB() {
     const flexPreferiti = document.querySelector("#sezionej");
     if (!flexPreferiti) return;
 
-    fetch("api_leggi_preferiti.php")
-        .then(function(response) { return response.json(); })
-        .then(function(json) {
-            flexPreferiti.innerHTML = ""; 
+    fetch("api_leggi_preferiti.php").then(onResponse).then(function(json) {
+        flexPreferiti.innerHTML = ""; 
 
-            for (let i = 0; i < json.length; i++) {
-                const libro = json[i];
+        for (let i = 0; i < json.length; i++) {
+            const libro = json[i];
 
-                const elemPreferito = document.createElement("article");
-                elemPreferito.classList.add("libroj");
+            const elemPreferito = document.createElement("article");
+            elemPreferito.classList.add("libroj");
 
-                const contenitoreImm = document.createElement("div");
-                contenitoreImm.classList.add("contenitore-immaginej");
+            const contenitoreImm = document.createElement("div");
+            contenitoreImm.classList.add("contenitore-immaginej");
                 
-                const copertinaLibro = document.createElement("img");
-                copertinaLibro.src = libro.copertina;
+            const copertinaLibro = document.createElement("img");
+            copertinaLibro.src = libro.copertina;
                 
-                contenitoreImm.appendChild(copertinaLibro);
-                elemPreferito.appendChild(contenitoreImm);
+            contenitoreImm.appendChild(copertinaLibro);
+            elemPreferito.appendChild(contenitoreImm);
 
-                const descrizione = document.createElement("div");
-                descrizione.classList.add("libro-descrizionej");
+            const descrizione = document.createElement("div");
+            descrizione.classList.add("libro-descrizionej");
                 
-                const titolo = document.createElement("div");
-                titolo.classList.add("titoloj");
-                titolo.textContent = libro.titolo;
+            const titolo = document.createElement("div");
+            titolo.classList.add("titoloj");
+            titolo.textContent = libro.titolo;
                 
-                const prezzo = document.createElement("div");
-                prezzo.classList.add("sottotitoloj");
-                prezzo.textContent = libro.prezzo;
+            const prezzo = document.createElement("div");
+            prezzo.classList.add("sottotitoloj");
+            prezzo.textContent = libro.prezzo;
 
-                const btnRimuovi = document.createElement("a");
-                btnRimuovi.textContent = "Rimuovi";
-                btnRimuovi.classList.add("bottoneRimuovi");
+            const btnRimuovi = document.createElement("a");
+            btnRimuovi.textContent = "Rimuovi";
+            btnRimuovi.classList.add("bottoneRimuovi");
                 
-                btnRimuovi.dataset.idLibro = libro.libro_id; 
+            btnRimuovi.dataset.idLibro = libro.libro_id; 
                 
-                btnRimuovi.addEventListener("click", BottoneRosso); 
+            btnRimuovi.addEventListener("click", BottoneRosso); 
 
-                descrizione.appendChild(titolo);
-                descrizione.appendChild(prezzo);
-                descrizione.appendChild(btnRimuovi);
+            descrizione.appendChild(titolo);
+            descrizione.appendChild(prezzo);
+            descrizione.appendChild(btnRimuovi);
                 
-                elemPreferito.appendChild(descrizione);
-                flexPreferiti.appendChild(elemPreferito);
-            }
+            elemPreferito.appendChild(descrizione);
+            flexPreferiti.appendChild(elemPreferito);
+        }
 
-            coloraCuoriNellaPagina(json);
-        });
+        coloraCuoriNellaPagina(json);
+    });
 }
 
 function coloraCuoriNellaPagina(preferitiJson) {
@@ -160,9 +164,7 @@ function coloraCuoriNellaPagina(preferitiJson) {
 function inizializzaHome() {
     const contenitoreHome = document.querySelector("#sezione-libri-dinamici");
     if (contenitoreHome) {
-        fetch("api_libri.php")
-            .then(function(response) { return response.json(); })
-            .then(onJsonCaricaCatalogo);
+        fetch("api_libri.php").then(onResponse).then(onJsonCaricaCatalogo);
     }
 }
 
@@ -282,16 +284,14 @@ function onJsonCaricaCatalogo(json) {
 // ------------------------------------------------------------------------------------------
 
 function ripristinaStatoCarrelloHome() {
-    fetch("api_leggi_carrello.php")
-        .then(function(response) { return response.json(); })
-        .then(function(json) {
-            for (let i = 0; i < json.length; i++) {
-                const idLibroSalvato = json[i].libro_id;
-                const bottone = document.querySelector(".pulsante-freccia.destra[data-id-libro='" + idLibroSalvato + "']");
-                if (bottone) {
-                    bottone.classList.add("bottone-rosso");
-                }
+    fetch("api_leggi_carrello.php").then(onResponse).then(function(json) {
+        for (let i = 0; i < json.length; i++) {
+            const idLibroSalvato = json[i].libro_id;
+            const bottone = document.querySelector(".pulsante-freccia.destra[data-id-libro='" + idLibroSalvato + "']");
+            if (bottone) {
+                bottone.classList.add("bottone-rosso");
             }
+        }
         });
 }
 
@@ -301,10 +301,6 @@ function onJsonCarrello(json) {
     } else {
         console.log("Errore: " + json.error);
     }
-}
-
-function onResponseCarrello(response) {
-    return response.json();
 }
 
 function aggiungiAlCarrello(event) {
@@ -328,7 +324,7 @@ function aggiungiAlCarrello(event) {
     }
 
     const opzioni = { method: "post", body: dati_carrello };
-    fetch("api_aggiungi_carrello.php", opzioni).then(onResponseCarrello).then(onJsonCarrello);
+    fetch("api_aggiungi_carrello.php", opzioni).then(onResponse).then(onJsonCarrello);
 }
 
 inizializzaHome();
@@ -357,37 +353,25 @@ const immagineX=document.querySelector("#modal-view .logo");
 immagineX.addEventListener("click",chiudereModale);
 
 
-function onJsonLogin(json) {
-    if (json.success === true) {
-        window.location.reload();
-    } else {
-        const divErrore = document.querySelector("#log_errore");
-        divErrore.textContent = json.error;
-        divErrore.classList.add("block");
+function validaLogin(event) {
+    const emailInput = document.querySelector("#log_email");
+    const passwordInput = document.querySelector("#log_password");
+    const divErrore = document.querySelector("#log_errore");
+
+    divErrore.classList.add("hidden");  
+
+    if (emailInput.value.length === 0 || passwordInput.value.length === 0) {
+        
+        event.preventDefault(); 
+        
+        divErrore.textContent = "Inserisci email e password.";
+        divErrore.classList.remove("hidden");
     }
 }
 
-function onResponseLogin(response) {
-    return response.json();
-}
-
-function eseguiLogin(event) {
-    event.preventDefault();
-
-    const form = document.querySelector("#form_login");
-    
-    const divErrore = document.querySelector("#log_errore");
-    divErrore.classList.add("none");
-
-    const form_data = {method: "post", body: new FormData(form)}; 
-
-    fetch("login.php", form_data).then(onResponseLogin).then(onJsonLogin); 
-}
-
-
 const formLogin = document.querySelector("#form_login"); 
 if (formLogin) {
-    formLogin.addEventListener("submit", eseguiLogin);
+    formLogin.addEventListener("submit", validaLogin);
 }
 
 //-------------------------------------------------------------------------------------------
@@ -408,14 +392,6 @@ pulsantePreferiti.addEventListener("click",visualizzaPreferiti)
 
 //--------------------------------------------------------------------------------------------------------
 
-
-function onResponseRicercaDB(response) {
-    if (response.ok) {
-        return response.json();
-    } else {
-        return null;
-    }
-}
 
 function onJson(json) {
     const containerRisultati = document.querySelector("#risultati-ricerca");
@@ -519,9 +495,7 @@ function onJson(json) {
     }
 
     if (utenteLoggato) {
-        fetch("api_leggi_carrello.php")
-            .then(function(res) { return res.json(); })
-            .then(function(carrelloJson) {
+        fetch("api_leggi_carrello.php").then(onResponse).then(function(carrelloJson) {
                 const bottoniRicerca = document.querySelectorAll("#sezione-ricerca .destra-ricerca");
                 for (let b = 0; b < bottoniRicerca.length; b++) {
                     const btn = bottoniRicerca[b];
@@ -533,6 +507,7 @@ function onJson(json) {
                     }
                 }
             });
+        caricaPreferitiDalDB();
     }
 }
 
@@ -550,7 +525,7 @@ function search(event) {
     }
 
     const rest_url = "api_openlibrary.php?q=" + author_value;
-    fetch(rest_url).then(onResponseRicercaDB).then(onJson);
+    fetch(rest_url).then(onResponse).then(onJson);
 }
 
 const formRicercaLibri = document.querySelector("#ricerca");
@@ -558,13 +533,6 @@ if (formRicercaLibri) {
     formRicercaLibri.addEventListener("submit", search);
 }
 
-
-function onResponseRanking(response) {
-
-    if (!response.ok) 
-        return null;
-    return response.json(); 
-}
 
 function onJsonRanking(json) {
     const container = document.querySelector("#lista-ranking-film");
@@ -607,18 +575,10 @@ function onJsonRanking(json) {
 
 function aggiornaClassificaFilm() {
     
-    fetch("api_film.php").then(onResponseRanking).then(onJsonRanking);
+    fetch("api_film.php").then(onResponse).then(onJsonRanking);
 }
 aggiornaClassificaFilm();
 
-
-function onResponseRicerca(response) {
-    if (response.ok) {
-        return response.json();
-    } else {
-        return null;
-    }
-}
 
 function onJsonRicerca(json) {
     console.log("Risultati ricerca:", json);
@@ -665,9 +625,8 @@ function cercaFilmTramiteForm(event) {
     }
 
     const url = "api_film.php?q=" + testoCercato;
-    fetch(url).then(onResponseRicerca).then(onJsonRicerca);
+    fetch(url).then(onResponse).then(onJsonRicerca);
 }
 
 const formRicerca = document.querySelector("#form-ricerca-film");
 formRicerca.addEventListener("submit", cercaFilmTramiteForm);
-

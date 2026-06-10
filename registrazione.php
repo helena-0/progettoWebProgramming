@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
     require_once "auth.php";
 
@@ -64,7 +63,7 @@
 ?>
 
 
-
+<!DOCTYPE html>
 <html>
     <head>
         <title>Feltrinelli-Registrazione</title>
@@ -78,7 +77,7 @@
     </head>
     <body>
         <div id="body_sx">
-            <img src="immagini/registration-visual.jpg">
+            
         </div>
         <div id="body_up"></div>
         <section id="body_dx">  

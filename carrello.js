@@ -1,3 +1,11 @@
+function onResponse(response) {
+    if (response.ok) {
+        return response.json();
+    } else {
+        return null;
+    }
+}
+
 function onJsonLeggiCarrello(json) {
     const carrello = document.querySelector("#carrello");
 
@@ -25,20 +33,17 @@ function rimuoviDalCarrello(event) {
     dati_carrello.append("id_libro", idLibro);
 
     fetch("api_aggiungi_carrello.php", { method: "post", body: dati_carrello })
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(json) {
-            if(json.success) {
-                const divContenitoreDescrizione = bottone.parentNode;
-                const articolo = divContenitoreDescrizione.parentNode;
+        .then(onResponse).then(function(json) {
+        if(json.success) {
+            const divContenitoreDescrizione = bottone.parentNode;
+            const articolo = divContenitoreDescrizione.parentNode;
                 
-                setTimeout(function() {
-                    articolo.remove();
-                    aggiornaStatoCarrello();
-                }, 500);
-            }
-        });
+            setTimeout(function() {
+                articolo.remove();
+                aggiornaStatoCarrello();
+            }, 500);
+        }
+    });
 }
 
 
@@ -108,15 +113,12 @@ function creaSchedaLibro(libro) {
     div_prezzo.appendChild(prezzosconto_libro);
 }
 
-function onResponseLeggiCarrello(response) {
-    return response.json();
-}
 
 function caricaCarrelloAsincrono() {
     const contenitore = document.querySelector("#carrello");
  
     if (contenitore) {
-        fetch("api_leggi_carrello.php").then(onResponseLeggiCarrello).then(onJsonLeggiCarrello);
+        fetch("api_leggi_carrello.php").then(onResponse).then(onJsonLeggiCarrello);
     }
 }
 

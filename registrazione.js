@@ -44,7 +44,7 @@ function checkEmail(event) {
         document.querySelector("#div-email").classList.add("errore");
         formStatus.email = false;
     } else {
-        fetch("check_email.php?q="+encodeURIComponent(String(emailInput.value).toLowerCase())).then(fetchResponse).then(jsonCheckEmail);
+        fetch("check_email.php?q=" + encodeURIComponent(emailInput.value)).then(fetchResponse).then(jsonCheckEmail);
     }
 }
 
