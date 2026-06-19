@@ -56,7 +56,6 @@
     </head>
     <body>
         <div id="body_sx"></div>
-        <div id="body_up"></div>
         <section id="body_dx">  
             <div id="indietro">
                 <img src="immagini/freccia_rossa.png">
